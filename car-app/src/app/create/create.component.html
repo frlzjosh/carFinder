@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form id="formCreateAccount" name="createAccount" #form="ngForm">
+                <div class="form-group" >
+                    <label for="firstName">First Name</label>
+                    <!-- <input id="suhh" [ngModelOptions]="{standalone: true}" type="text" [(ngModel)]="createUser.firstName" class="form-control" placeholder="First Name" required> -->
+                    <input id="createFirstName" name="createFirstName" type="text" [(ngModel)]="newUser.firstName" class="form-control" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input id="createLasttName" name="createLastName" type="text" [(ngModel)]="newUser.lastName" class="form-control" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="userName">Desired Username</label>
+                    <input id="createUserName" name="createUserName" type="text" [(ngModel)]="newUser.userName" class="form-control" placeholder="Username" required>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button (click)="createAccountAndPassUserObject()" class="btn btn-primary" routerLink="/dashboard">Create Account</button>
+        </div>
+    </div>
+</div>

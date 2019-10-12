@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form id="form1" name="login" #form="ngForm">
+                <div class="form-group">
+                    <label for="Username">Username</label>
+                    <input id="suh" name="suh" [(ngModel)]="userName" class="form-control" type="text" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                        <input class="form-control" type="password" placeholder="Enter Password">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 text-center">
+            <button class="btn btn-primary mr-3" routerLink="/create">Create Account</button>
+            <button (click)="loginAndPassUserName()" class="btn btn-primary" routerLink="/dashboard">Login</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+.dashboard{
+    background-color: #D00D20;
+    color: white;
+    &__item{
+        display: inline;
+        margin: 10px;
+        cursor: pointer;
+    }
+}
