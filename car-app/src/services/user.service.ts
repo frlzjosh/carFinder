@@ -16,9 +16,8 @@ export class UserService {
     this.user.userName = userName
   }
   public createUser(userObj): Observable<any>{
-    console.log('suh')
+    this.setUserName(userObj.userName)
     let params = new HttpParams().set("firstName", userObj.firstName).set("lastName", userObj.lastName).set("userName", userObj.userName)
-    console.log(params)
     return this.http.get('http://localhost:8080/createUser', {params: params})
   }
 }

@@ -15,8 +15,8 @@
     </div>
     <div class="row mt-2">
         <div class="col-12 text-center">
-            <button class="btn btn-primary mr-3" routerLink="/create">Create Account</button>
-            <button (click)="loginAndPassUserName()" class="btn btn-primary" routerLink="/dashboard">Login</button>
+            <button class="btn btn-primary mr-3" routerLink="/create-account">Create Account</button>
+            <button [disabled]="userName == null" (click)="loginAndPassUserName()" class="btn btn-primary" routerLink="/search-car">Login</button>
         </div>
     </div>
 </div>

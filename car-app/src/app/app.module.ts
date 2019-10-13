@@ -7,7 +7,8 @@ import { LoginComponent } from './login/login.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateComponent } from './create/create.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { SearchCarComponent } from './search-car/search-car.component'
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http'
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    CreateComponent
+    CreateComponent,
+    SearchCarComponent
   ],
   imports: [
     BrowserModule,
