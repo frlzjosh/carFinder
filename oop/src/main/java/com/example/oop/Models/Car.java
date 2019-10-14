@@ -1,6 +1,20 @@
 package com.example.oop.Models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="car")
 public class Car {
+    @Id 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="car_id")
+    int id;
+
     String model;
     String make;
     String year;
@@ -43,6 +57,17 @@ public class Car {
 
     public void setIsSalvaged(String isSalvaged) {
         this.isSalvaged = isSalvaged;
+    }
+
+    @Override
+    public String toString() {
+        return "Car={" +
+            "id=" + id +
+            ", make='" + make + '\'' +
+            ", model='" + model + '\'' +
+            ", year='" + year + '\'' +
+            ", isSalvaged='" + isSalvaged + '\'' +
+        '}';
     }
 
 }
