@@ -4,13 +4,33 @@
             <h3>Search a Car</h3>
         </div>
     </div>
-    <div class="row mt-2">
+    <div class="row mt-4">
         <div class="col-12">
             <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-danger" id="dropdownBasic1" ngbDropdownToggle>{{displayMessage}}</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button on-click="selectVehicle(carMake)" name="vehicle" ngDefaultControl [(ngModel)]="carMake[i]" class="search-car__button" *ngFor="let carMake of carMakeList; let i = index" ngbDropdownItem>{{carMake}}</button>
+                <button class="btn btn-danger" id="dropdownBasic1" ngbDropdownToggle>{{displayMakeMessage}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button on-click="selectVehicle(carMake)" name="vehicle" ngDefaultControl [(ngModel)]="carMake[i]" class="search-car__button" *ngFor="let carMake of carMakeList; let i = index" ngbDropdownItem>{{carMake}}</button>
+                </div>
             </div>
-        </div>  
+            <div class="from-group mt-3">
+                <label for="model">Enter The Model</label>
+                <input class="form-control" [(ngModel)]="modelOfCar" name="modelCar" type="text" placeholder="Model">
+            </div>
+            <div class="from-group mt-3">
+                <label for="make">Enter Your Year</label>
+                <input class="form-control" [(ngModel)]="yearOfCar" name="yearCar" type="text" placeholder="Year">
+            </div>
+            <div ngbDropdown class="d-inline-block mt-4">
+                <button class="btn btn-danger" id="dropdownBasic1" ngbDropdownToggle>{{displayIsSalvagedMessage}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button on-click="selectYesOrNoOption(yesOrNo)" name="yesOrNo" ngDefaultControl  class="search-car__button" *ngFor="let yesOrNo of yesNoList" ngbDropdownItem>{{yesOrNo}}</button>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <button (click)="searchCars()"class="btn btn-danger">Search Cars</button>
+        </div>
     </div>
 </div>

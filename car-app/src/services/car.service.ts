@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,5 +17,15 @@ export class CarService {
         this.carMake.push(resp[index].name.toUpperCase())
       })
     })
+  }
+
+  public queryCars(Obj):Observable<any>{
+    let params = new HttpParams()
+      .set("make", Obj.make)
+      .set("model", Obj.model)
+      .set("year", Obj.year)
+      .set("isSalvaged", Obj.isSalvaged)
+
+    return this.http.get('http://localhost:8080/createCar',{params:params} )
   }
 }

@@ -12,11 +12,14 @@ export class UserService {
   }
   constructor(public http: HttpClient) { }
 
-  public setUserName(userName: String){
+  public setUserName(userName){
     this.user.userName = userName
   }
+
+  public getUserName(){
+    return this.user.userName
+  }
   public createUser(userObj): Observable<any>{
-    this.setUserName(userObj.userName)
     let params = new HttpParams().set("firstName", userObj.firstName).set("lastName", userObj.lastName).set("userName", userObj.userName)
     return this.http.get('http://localhost:8080/createUser', {params: params})
   }

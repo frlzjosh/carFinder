@@ -9,9 +9,14 @@ import { CarService } from './../../services/car.service'
 export class SearchCarComponent implements OnInit {
 
   public carMakeList: String[]
+  public yesNoList: String[] = ['Yes', 'No']
   public vehicle: String
-  public displayMessage: String = 'Select Your Car Make'
+  public displayMakeMessage: String = 'Select Your Car Make'
+  public displayIsSalvagedMessage: String = 'Is Your Car Salvaged'
   public currentCarMake: String
+  public modelOfCar: String
+  public yearOfCar: String
+  public isSalvaged: String
 
   constructor(public http: HttpClient, public carService: CarService) { }
 
@@ -28,8 +33,18 @@ export class SearchCarComponent implements OnInit {
   
 
   selectVehicle(val){
-    this.displayMessage = 'You Selected: ' + val
+    this.displayMakeMessage = 'You Selected: ' + val
     this.currentCarMake = val
+  }
+
+  selectYesOrNoOption(val){
+    this.displayIsSalvagedMessage = 'You Selected: ' + val
+    this.isSalvaged = val
+  }
+
+  searchCars(){
+    let carObject = {make: this.currentCarMake, model: this.modelOfCar, year: this.yearOfCar, isSalvaged: this.isSalvaged}
+    this.carService.queryCars(carObject).subscribe()
   }
 
 

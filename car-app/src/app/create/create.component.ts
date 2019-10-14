@@ -21,6 +21,7 @@ export class CreateComponent implements OnInit {
 
   createAccountAndPassUserObject(){
     this.userService.createUser(this.newUser).subscribe()
+    this.userService.setUserName(this.newUser.firstName)
   }
 
 }

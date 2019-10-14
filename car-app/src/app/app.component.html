@@ -5,6 +5,6 @@
     </div>
   </div>
 </div>
-<app-dashboard *ngIf="this.router.url !== '/login'"></app-dashboard>
+<app-dashboard *ngIf="this.router.url !== '/create-account' && this.router.url !== '/login'"></app-dashboard>
 
 <router-outlet></router-outlet>
