@@ -8,10 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="car")
 public class Car {
     @Id 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_id")
     int id;
 
@@ -20,12 +19,23 @@ public class Car {
     String year;
     String isSalvaged;
 
-    public Car(String model, String make, String year, String isSalvaged) {
+    public Car(){
+        super();
+    }
+
+    public Car( String make, String model, String year, String isSalvaged) {
         this.model = model;
         this.make = make;
         this.year = year;
         this.isSalvaged = isSalvaged;
     }
+    // public Car(int id, String make, String model, String year, String isSalvaged) {
+    //     this.id = id;
+    //     this.model = model;
+    //     this.make = make;
+    //     this.year = year;
+    //     this.isSalvaged = isSalvaged;
+    // }
 
     public String getModel() {
         return model;
