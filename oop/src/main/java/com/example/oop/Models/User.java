@@ -18,6 +18,16 @@ public class User{
     String firstName;
     String lastName;
 
+    public User(){
+        super();
+    }
+
+    public User(String firstName, String lastName, String userName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -40,12 +50,6 @@ public class User{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public User(String firstName, String lastName, String userName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
     }
 
     @Override

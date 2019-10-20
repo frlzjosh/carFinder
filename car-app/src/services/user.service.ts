@@ -16,11 +16,17 @@ export class UserService {
     this.user.userName = userName
   }
 
-  public getUserName(){
+  public getUserName(){   
     return this.user.userName
   }
+
   public createUser(userObj): Observable<any>{
     let params = new HttpParams().set("firstName", userObj.firstName).set("lastName", userObj.lastName).set("userName", userObj.userName)
     return this.http.get('http://localhost:8080/createUser', {params: params})
+  }
+
+  public checkUser(userName: string): Observable<any>{
+    let params = new HttpParams().set("userName", userName)
+    return this.http.get('http://localhost:8080/doesUserHaveAnAccount', {params: params});
   }
 }

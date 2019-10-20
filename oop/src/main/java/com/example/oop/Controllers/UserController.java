@@ -1,5 +1,6 @@
 package com.example.oop.Controllers;
 
+import java.util.List;
 
 import com.example.oop.Models.User;
 import com.example.oop.Repositories.UserRepository;
@@ -19,15 +20,28 @@ public class UserController{
 
     @CrossOrigin
     @GetMapping("/createUser")
-    public String getUserInfo(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String userName){
+    public User getUserInfo(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String userName){
         User user = new User(firstName, lastName, userName);
-        userRepository.save(user);
-        return user.toString();
+        return userRepository.save(user);
     }
 
-    @GetMapping("/test")
-    public String get(){
-        return"sup";
-    }
+    @CrossOrigin
+    @GetMapping("/doesUserHaveAnAccount")
+    public User compareUsers(@RequestParam String userName){
+        List<User> users = userRepository.findAll();
+        User user = new User();
+        for(int i = 0; i < users.size(); i++){
+            if(users.get(i).getUserName().compareTo(userName) == 0){
+                user =  new User(
+                    users.get(i).getFirstName(),
+                    users.get(i).getLastName(),
+                    users.get(i).getUserName()
+                );
+            }else{
+                user = null;
+            }
+        }
+        return user;
+    }  
 
 }
