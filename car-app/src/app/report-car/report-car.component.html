@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-12">
-            <h3>Search a Car</h3>
+            <h3>Report Missing Car</h3>
         </div>
     </div>
     <div class="row mt-4">
@@ -9,7 +9,7 @@
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-danger" id="dropdownBasic1" ngbDropdownToggle>{{displayMakeMessage}}</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button on-click="selectVehicle(carMake)" name="vehicle" ngDefaultControl [(ngModel)]="carMake[i]" class="search-car__button" *ngFor="let carMake of carMakeList; let i = index" ngbDropdownItem>{{carMake}}</button>
+                    <button on-click="selectVehicle(carMake)" name="vehicle" ngDefaultControl [(ngModel)]="carMake[i]" class="report-car__button" *ngFor="let carMake of carMakeList; let i = index" ngbDropdownItem>{{carMake}}</button>
                 </div>
             </div>
             <div class="from-group mt-3">
@@ -23,14 +23,14 @@
             <div ngbDropdown class="d-inline-block mt-4">
                 <button class="btn btn-danger" id="dropdownBasic1" ngbDropdownToggle>{{displayIsSalvagedMessage}}</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button on-click="selectYesOrNoOption(yesOrNo)" name="yesOrNo" ngDefaultControl  class="search-car__button" *ngFor="let yesOrNo of yesNoList" ngbDropdownItem>{{yesOrNo}}</button>
+                    <button on-click="selectYesOrNoOption(yesOrNo)" name="yesOrNo" ngDefaultControl  class="report-car__button" *ngFor="let yesOrNo of yesNoList" ngbDropdownItem>{{yesOrNo}}</button>
                 </div>
             </div>
         </div> 
     </div>
     <div class="row mt-5">
         <div class="col-12 text-center">
-            <button (click)="searchCars()"class="btn btn-danger">Search Cars</button>
+            <button (click)="reportCar()"class="btn btn-danger">Report Missing Car</button>
         </div>
     </div>
 </div>

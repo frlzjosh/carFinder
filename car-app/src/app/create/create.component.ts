@@ -9,19 +9,21 @@ import { UserService } from './../../services/user.service'
 export class CreateComponent implements OnInit {
 
   newUser = {
-    firstName: String,
-    lastName: String,
-    userName: String
+    firstName: null,
+    lastName: null,
+    userName: null
   }
 
   constructor( public userService: UserService) { }
 
   ngOnInit() {
+    this.userService.setUserName(null)
   }
 
   createAccountAndPassUserObject(){
-    this.userService.createUser(this.newUser).subscribe()
-    this.userService.setUserName(this.newUser.firstName)
+    this.userService.createUser(this.newUser).subscribe(data=>{
+      this.userService.setUser(data)
+    })
   }
 
 }

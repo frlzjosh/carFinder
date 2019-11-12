@@ -13,7 +13,9 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_id")
     int id;
-
+    
+    @Column(name="user_id")
+    int userID;
     String model;
     String make;
     String year;
@@ -23,19 +25,21 @@ public class Car {
         super();
     }
 
-    public Car( String make, String model, String year, String isSalvaged) {
+    public Car(int userID, String make, String model, String year, String isSalvaged) {
+        this.userID = userID;
         this.model = model;
         this.make = make;
         this.year = year;
         this.isSalvaged = isSalvaged;
     }
-    // public Car(int id, String make, String model, String year, String isSalvaged) {
-    //     this.id = id;
-    //     this.model = model;
-    //     this.make = make;
-    //     this.year = year;
-    //     this.isSalvaged = isSalvaged;
-    // }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
     public String getModel() {
         return model;
@@ -79,5 +83,7 @@ public class Car {
             ", isSalvaged='" + isSalvaged + '\'' +
         '}';
     }
+
+    
 
 }

@@ -1,17 +1,19 @@
-import { Component, OnInit, NgModule} from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule} from '@angular/core';
 import { UserService } from './../../services/user.service'
 import { Router } from '@angular/router';
+import { Subject, Subscriber, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy{
 
   public userName
   public invalidUserName =  false
-
+  public subscription: Subscription
+  
   constructor(
     public userService: UserService,
     public router: Router
@@ -20,17 +22,22 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy(){
+    if(this.subscription)
+      this.subscription.unsubscribe()
+  }
+
   public loginAndPassUserName(){
-    this.userService.checkUser(this.userName).subscribe( resp => {
-      console.log(resp)
-      if( resp != null){
-        this.userService.setUserName(resp.userName);
-        this.router.navigate(['/search-car'])
-      }
-      else{
-        this.userName = null
-        this.invalidUserName = true
-      }
+    this.subscription = this.userService.checkUser(this.userName)
+      .subscribe( resp => {
+        if( resp != null){
+          this.userService.setUser(resp);
+          this.router.navigate(['/report-car'])
+        }
+        else{
+          this.userName = null  
+          this.invalidUserName = true
+        }
     })
   }
 

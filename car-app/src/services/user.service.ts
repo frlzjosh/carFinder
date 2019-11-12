@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams} from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -8,15 +8,26 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   public user = { 
-    userName: String = null
+    firstName: null,
+    id: 0,
+    lastName: null,
+    userName: null,
   }
+  userName$ = new BehaviorSubject([])
   constructor(public http: HttpClient) { }
 
-  public setUserName(userName){
-    this.user.userName = userName
+  public setUser(user){
+    this.user.id = user.id
+    this.user.firstName = user.firstName
+    this.user.lastName = user.lastName
+    this.user.userName = user.userName
   }
 
-  public getUserName(){   
+  public setUserName(userName){   
+    this.user.userName = userName
+  }
+  
+  public getUserName(){  
     return this.user.userName
   }
 

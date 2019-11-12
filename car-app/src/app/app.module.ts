@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateComponent } from './create/create.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SearchCarComponent } from './search-car/search-car.component'
+import { ReportCarComponent } from './report-car/report-car.component';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { SearchCarComponent } from './search-car/search-car.component'
     LoginComponent,
     DashboardComponent,
     CreateComponent,
-    SearchCarComponent
+    ReportCarComponent,
   ],
   imports: [
     BrowserModule,

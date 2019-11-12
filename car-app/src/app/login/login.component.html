@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form id="form1" name="login" #form="ngForm">
+            <form name="login" #form="ngForm">
                 <div class="form-group">
                     <label for="Username">Username</label>
-                    <input id="userNamej" name="userNamej" type="text" [(ngModel)]="userName" class="form-control"  placeholder="Username" required>
+                    <input name="userName" type="text" [(ngModel)]="userName" class="form-control"  placeholder="Username" required>
                     <p class="login__invalid" *ngIf="invalidUserName">Invalid User Name</p>
                 </div>
                 <div class="form-group">

@@ -22,11 +22,6 @@ public class User{
         super();
     }
 
-    public User(String firstName, String lastName, String userName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
-    }
 
     public String getUserName() {
         return userName;
@@ -52,6 +47,12 @@ public class User{
         this.lastName = lastName;
     }
 
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     @Override
     public String toString() {
         return "User={" +
@@ -60,5 +61,17 @@ public class User{
             ", lastName='" + lastName + '\'' +
             ", userName='" + userName + '\'' +
         '}';
+    }
+
+    public User(String userName, String firstName, String lastName) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    public User(int id, String userName, String firstName, String lastName) {
+        this.id = id;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }

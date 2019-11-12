@@ -20,14 +20,14 @@ public class CarController {
     @GetMapping("/getCarInfo")
     @ResponseBody
     public String getSomeString(
-            // @RequestParam int id, 
+            @RequestParam int userID, 
             @RequestParam String make, 
             @RequestParam String model,
             @RequestParam String year, 
             @RequestParam String isSalvaged
         ) {
         
-        Car car = new Car( make, model, year, isSalvaged);
+        Car car = new Car(userID, make, model, year, isSalvaged);
 
         return car.toString();
     }
@@ -35,12 +35,12 @@ public class CarController {
     @CrossOrigin
     @GetMapping("/createCar")
     public Car createCar(
-        // @RequestParam int id, 
+        @RequestParam int userID, 
         @RequestParam String make, 
         @RequestParam String model,
         @RequestParam String year, 
         @RequestParam String isSalvaged
     ){
-        return carRespository.save(new Car(make, model, year, isSalvaged));
+        return carRespository.save(new Car(userID, make, model, year, isSalvaged));
     }
 }   

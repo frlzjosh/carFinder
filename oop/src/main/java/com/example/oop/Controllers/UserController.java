@@ -1,6 +1,7 @@
 package com.example.oop.Controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.oop.Models.User;
 import com.example.oop.Repositories.UserRepository;
@@ -21,7 +22,7 @@ public class UserController{
     @CrossOrigin
     @GetMapping("/createUser")
     public User getUserInfo(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String userName){
-        User user = new User(firstName, lastName, userName);
+        User user = new User(userName, firstName, lastName);
         return userRepository.save(user);
     }
 
@@ -32,11 +33,9 @@ public class UserController{
         User user = new User();
         for(int i = 0; i < users.size(); i++){
             if(users.get(i).getUserName().compareTo(userName) == 0){
-                user =  new User(
-                    users.get(i).getFirstName(),
-                    users.get(i).getLastName(),
-                    users.get(i).getUserName()
-                );
+                Optional<User> u = userRepository.findByUserName(users.get(i).getUserName());
+                int id = u.map(usr-> usr.getId()).orElse(0);
+                return new User(id, users.get(i).getUserName(), users.get(i).getFirstName(), users.get(i).getLastName());
             }else{
                 user = null;
             }

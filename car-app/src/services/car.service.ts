@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CarService {
 
-  public carMake: String[] = []
+  public carMake: string[] = []
 
   constructor(public http: HttpClient) { }
 
@@ -21,6 +21,7 @@ export class CarService {
 
   public queryCars(Obj):Observable<any>{
     let params = new HttpParams()
+      .set("userID", Obj.id)
       .set("make", Obj.make)
       .set("model", Obj.model)
       .set("year", Obj.year)
