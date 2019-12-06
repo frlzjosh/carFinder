@@ -107,10 +107,10 @@
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
 				<version>2.0.0</version>
-				<configuration>
+				<!-- <configuration>
 					<deploy.version>2.0.0</deploy.version>
 					<projectId>car-app-258808</projectId>
-				</configuration>
+				</configuration> -->
 				<!-- <configuration>
 					<enableJarClasses>false</enableJarClasses>
 					<projectId>car-app-258808</projectId>
