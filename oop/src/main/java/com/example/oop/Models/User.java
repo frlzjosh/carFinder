@@ -1,5 +1,6 @@
 package com.example.oop.Models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,9 +14,14 @@ public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-
+    
+    @Column(name="user_name")
     String userName;
+
+    @Column(name="first_name")
     String firstName;
+    
+    @Column(name="last_name")
     String lastName;
 
     public User(){
