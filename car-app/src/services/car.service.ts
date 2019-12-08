@@ -27,6 +27,6 @@ export class CarService {
       .set("year", Obj.year)
       .set("isSalvaged", Obj.isSalvaged)
 
-    return this.http.get('http://localhost:8080/createCar',{params:params} )
+    return this.http.get('https://car-app-258808.appspot.com/createCar',{params:params} )
   }
 }
