@@ -28,12 +28,6 @@
 			<artifactId>appengine-api-1.0-sdk</artifactId>
 			<version>1.9.53</version>
 		</dependency>
-		
-		<!-- <dependency>
-			<groupId>com.google.cloud.sql</groupId>
-			<artifactId>mysql-socket-factory-connector-j-8</artifactId>
-			<version>1.0.15</version>
-		</dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jul-to-slf4j</artifactId>
@@ -59,10 +53,6 @@
 			<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
 			<version>1.0.0.RELEASE</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -126,13 +116,6 @@
 					<projectId>car-app-258808</projectId>
 					<enableJarClasses>false</enableJarClasses>
 				</configuration>
-				<!-- <configuration>
-					<enableJarClasses>false</enableJarClasses>
-					<projectId>car-app-258808</projectId>
-					<port>8181</port>
-					<address>0.0.0.0</address>
-				</configuration> -->
-				
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
