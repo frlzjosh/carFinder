@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams} from '@angular/common/http'
 import { Observable, BehaviorSubject } from 'rxjs';
+import { OktaAuthService } from '@okta/okta-angular';
 
 
 @Injectable({
@@ -14,24 +15,24 @@ export class UserService {
     userName: null,
   }
   userName$ = new BehaviorSubject([])
-  constructor(public http: HttpClient) { }
+  constructor(
+    public http: HttpClient,
+    public okta: OktaAuthService
+  ) { }
 
-  public setUser(user){
-    this.user.id = user.id
-    this.user.firstName = user.firstName
-    this.user.lastName = user.lastName
-    this.user.userName = user.userName
-  }
-
-  public setUserName(userName){   
-    this.user.userName = userName
+  setUser(user){
+    this.user.id = user.sub
+    this.user.firstName = user.given_name
+    this.user.lastName = user.family_ame
+    this.user.userName = user.name
   }
   
-  public getUserName(){  
+  getUserName(){ 
     return this.user.userName
   }
 
-  public createUser(userObj): Observable<any>{
+  createUser(userObj): Observable<any>{
+    
     let params = new HttpParams().set("firstName", userObj.firstName).set("lastName", userObj.lastName).set("userName", userObj.userName)
     return this.http.get('http://localhost:8080/createUser', {params: params})
   }

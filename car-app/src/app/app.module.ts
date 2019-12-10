@@ -9,6 +9,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateComponent } from './create/create.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReportCarComponent } from './report-car/report-car.component';
+import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
+import { AuthRoutingModule } from './auth-routing.module';
 
 
 @NgModule({
@@ -24,7 +27,12 @@ import { ReportCarComponent } from './report-car/report-car.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    // RouterModule.forRoot(appRoutes),
+    // OktaAuthModule.initAuth(config),
+    HttpModule,
+    AuthRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
