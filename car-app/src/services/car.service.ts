@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { carMakes } from './../assets/data/car';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +11,11 @@ export class CarService {
 
   constructor(public http: HttpClient) { }
 
-
   public getCarMakes(){
-    carMakes.map(resp=>{
-      this.carMake.push(resp)
+    this.http.get('https://private-anon-d669de0f06-carsapi1.apiary-mock.com/manufacturers').subscribe(resp => {
+      Object.keys(resp).forEach((element, index) => {
+        this.carMake.push(resp[index].name.toUpperCase())
+      })
     })
   }
 

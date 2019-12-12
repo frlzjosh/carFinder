@@ -11,8 +11,8 @@ import javax.persistence.Table;
 public class User{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    int id;
 
     String userName;
     String firstName;
@@ -47,10 +47,10 @@ public class User{
         this.lastName = lastName;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     @Override
@@ -68,7 +68,7 @@ public class User{
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    public User(String id, String userName, String firstName, String lastName) {
+    public User(int id, String userName, String firstName, String lastName) {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;
