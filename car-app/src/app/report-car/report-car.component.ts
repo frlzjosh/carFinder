@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CarService } from '../../services/car.service'
 import { UserService } from 'src/services/user.service';
+import { OktaAuthService } from '@okta/okta-angular';
+import { LoginService } from 'src/services/login.service';
 @Component({
   selector: 'app-report-car',
   templateUrl: './report-car.component.html',
@@ -18,15 +20,25 @@ export class ReportCarComponent implements OnInit {
   public modelOfCar: string
   public yearOfCar: string
   public isSalvaged: string
+  public isAuthenticated: boolean
 
   constructor(
     public http: HttpClient,
     public carService: CarService,
-    public userService: UserService
+    public userService: UserService,
+    public oktaAuth: OktaAuthService,
+    public loginService: LoginService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const userInformation = await this.oktaAuth.getUser()
+    this.userService.setUser(userInformation);
     this.carService.getCarMakes()
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean)  => {
+        this.isAuthenticated = isAuthenticated
+      }
+    );
   }
 
   ngAfterViewInit(){

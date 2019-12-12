@@ -14,7 +14,7 @@ public class Car {
     int id;
     
     @Column(name="user_id")
-    int userID;
+    String userID;
     String model;
     String make;
     String year;
@@ -24,7 +24,7 @@ public class Car {
         super();
     }
 
-    public Car(int userID, String make, String model, String year, String isSalvaged) {
+    public Car(String userID, String make, String model, String year, String isSalvaged) {
         this.userID = userID;
         this.model = model;
         this.make = make;
@@ -32,11 +32,11 @@ public class Car {
         this.isSalvaged = isSalvaged;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 

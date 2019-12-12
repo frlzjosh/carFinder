@@ -18,8 +18,9 @@ public class CarController {
 
     @GetMapping("/getCarInfo")
     @ResponseBody
+    @CrossOrigin(origins = "http://localhost:4200")
     public String getSomeString(
-            @RequestParam int userID, 
+            @RequestParam String userID, 
             @RequestParam String make, 
             @RequestParam String model,
             @RequestParam String year, 
@@ -31,10 +32,10 @@ public class CarController {
         return car.toString();
     }
     
-    @CrossOrigin
     @GetMapping("/createCar")
+    @CrossOrigin(origins = "http://localhost:4200")
     public Car createCar(
-        @RequestParam int userID, 
+        @RequestParam String userID, 
         @RequestParam String make, 
         @RequestParam String model,
         @RequestParam String year, 

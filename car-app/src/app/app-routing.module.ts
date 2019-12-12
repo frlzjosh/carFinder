@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {LoginComponent} from './login/login.component'
-import {DashboardComponent } from './dashboard/dashboard.component'
+// import {LoginComponent} from './login/login.component'
 import {CreateComponent } from './create/create.component'
 import { ReportCarComponent } from './report-car/report-car.component'
+import { AppComponent } from './app.component'
+import { OktaAuthGuard } from '@okta/okta-angular';
+
 
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path:'app', component: AppComponent, canActivate: [OktaAuthGuard]
   },
   {
-    path:'login', component: LoginComponent
+    path:'create-account', component: CreateComponent, canActivate: [OktaAuthGuard]
+
   },
   {
-    path:'create-account', component: CreateComponent
-  },
-  {
-    path:'report-car', component: ReportCarComponent
+    path:'report-car', component: ReportCarComponent, canActivate: [OktaAuthGuard]
+
   },
 ];
 
