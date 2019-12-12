@@ -17,9 +17,10 @@ export class CreateComponent implements OnInit {
   constructor( public userService: UserService) { }
 
   ngOnInit() {
+    this.userService.setUserName(null)
   }
 
-  async createAccountAndPassUserObject(){
+  createAccountAndPassUserObject(){
     this.userService.createUser(this.newUser).subscribe(data=>{
       this.userService.setUser(data)
     })

@@ -19,22 +19,22 @@ public class UserController{
     UserRepository userRepository;
 
 
+    @CrossOrigin
     @GetMapping("/createUser")
-    @CrossOrigin(origins = "http://localhost:4200")
     public User getUserInfo(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String userName){
         User user = new User(userName, firstName, lastName);
         return userRepository.save(user);
     }
 
+    @CrossOrigin
     @GetMapping("/doesUserHaveAnAccount")
-    @CrossOrigin(origins = "http://localhost:4200")
     public User compareUsers(@RequestParam String userName){
         List<User> users = userRepository.findAll();
         User user = new User();
         for(int i = 0; i < users.size(); i++){
             if(users.get(i).getUserName().compareTo(userName) == 0){
                 Optional<User> u = userRepository.findByUserName(users.get(i).getUserName());
-                String id = u.map(usr-> usr.getId()).orElse(null);
+                int id = u.map(usr-> usr.getId()).orElse(0);
                 return new User(id, users.get(i).getUserName(), users.get(i).getFirstName(), users.get(i).getLastName());
             }else{
                 user = null;

@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, OnInit, AfterContentChecked } from '@angular/core';
 import { UserService } from './../../services/user.service'
 import { Router } from '@angular/router';
-import { OktaAuthService} from '@okta/okta-angular'
 
 @Component({
   selector: 'app-dashboard',
@@ -10,25 +9,19 @@ import { OktaAuthService} from '@okta/okta-angular'
 })
 export class DashboardComponent implements OnInit{
 
-  public userName: string;
-  public isAuthenticated: boolean;
+  public userName: string
 
   constructor( 
     public userService: UserService,
-    public router: Router,
-    public oktaAuth: OktaAuthService
+    public router: Router
   ) { }
 
 
-  async ngOnInit() {
-    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
-    // Subscribe to authentication state changes
-    this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
-    );
-  }
-  ngAfterContentChecked(){
-    this.userName = this.userService.getUserName()
+  ngOnInit() {
+    //async issue
+    setTimeout( ()=> {
+      this.userName = this.userService.getUserName()
+    }, 100)
   }
 
 

@@ -1,4 +1,4 @@
-<section *ngIf="isAuthenticated">
+<section>
   <div class="container mt-5">
     <div class="row">
       <div class="col-12 text-center">
@@ -6,6 +6,6 @@
       </div>
     </div>
   </div>
-  <app-dashboard></app-dashboard>
+  <app-dashboard *ngIf="this.router.url !== '/create-account' && this.router.url !== '/login'"></app-dashboard>
+  <router-outlet></router-outlet>
 </section>
-<router-outlet></router-outlet>
