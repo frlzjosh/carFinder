@@ -3,21 +3,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateComponent } from './create/create.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReportCarComponent } from './report-car/report-car.component';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
+import { TokenService } from 'src/services/token.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     DashboardComponent,
     CreateComponent,
     ReportCarComponent,
@@ -34,7 +33,7 @@ import { AuthRoutingModule } from './auth-routing.module';
     HttpModule,
     AuthRoutingModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

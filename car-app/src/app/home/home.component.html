@@ -9,9 +9,6 @@
             <div class="col-12 text-center mt-4">
                 <button class="btn btn-danger" *ngIf="!isAuthenticated" (click)="oktaAuth.loginRedirect()">Login</button>
             </div>
-            <!-- <div class="col-6">
-                <button *ngIf="isAuthenticated" (click)="oktaAuth.logout()">Logout</button>
-            </div> -->
         </div>
     </div>
 </section>
