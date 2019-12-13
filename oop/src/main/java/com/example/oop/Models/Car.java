@@ -12,9 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="car")
 public class Car implements Serializable {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -23,13 +21,17 @@ public class Car implements Serializable {
     int id;
     
     @Column(name="user_id")
-    int userID;
+    String userID;
+
     @Column(name="model")
     String model;
+
     @Column(name="make")
     String make;
+
     @Column(name="year")
     String year;
+    
     @Column(name="is_salvaged")
     String isSalvaged;
 
@@ -37,7 +39,7 @@ public class Car implements Serializable {
         super();
     }
 
-    public Car(int userID, String make, String model, String year, String isSalvaged) {
+    public Car(String userID, String make, String model, String year, String isSalvaged) {
         this.userID = userID;
         this.model = model;
         this.make = make;
@@ -45,11 +47,11 @@ public class Car implements Serializable {
         this.isSalvaged = isSalvaged;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 

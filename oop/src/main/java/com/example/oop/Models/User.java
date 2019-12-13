@@ -13,9 +13,15 @@ import javax.persistence.Table;
 @Table(name="users")
 public class User implements Serializable{
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    String id;
+
     
     @Column(name="user_name")
     String userName;
@@ -55,10 +61,10 @@ public class User implements Serializable{
         this.lastName = lastName;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     @Override
@@ -76,7 +82,7 @@ public class User implements Serializable{
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    public User(int id, String userName, String firstName, String lastName) {
+    public User(String id, String userName, String firstName, String lastName) {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;

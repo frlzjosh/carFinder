@@ -1,23 +1,22 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserService } from './../services/user.service'
+import { Component, OnInit } from '@angular/core';
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'car-app';
-  model: any;
+  isAuthenticated: boolean;
 
-  public user = {}
-
-  ngOnInit(){
-    this.user = this.userService.user
+  constructor(public oktaAuth: OktaAuthService) {
   }
 
-  constructor(public router: Router, public userService: UserService){
-
+  async ngOnInit() {
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
+    );
   }
 }
