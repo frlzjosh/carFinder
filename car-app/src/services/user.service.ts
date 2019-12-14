@@ -25,7 +25,7 @@ export class UserService {
     this.user.firstName = user.given_name
     this.user.lastName = user.family_ame
     this.user.userName = user.name
-    this.createUser(user);
+    this.createUser(user)
   }
   
   getUserName(){ 
@@ -33,6 +33,7 @@ export class UserService {
   }
 
   async createUser(userObj){
+    console.log('userObj: ', userObj)
     const token = await this.oktaAuth.getAccessToken()
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token
@@ -43,7 +44,7 @@ export class UserService {
       lastName: userObj.lastName,
       userName: userObj.userName
     }
-    return this.http.post('https://car-app-258808.appspot.com//createUser',body, {headers: headers}).subscribe(resp=>{
+    return this.http.post<any>('https://car-app-258808.appspot.com/createUser',body, {headers: headers}).subscribe(resp=>{
       console.log(resp);
     });
   }

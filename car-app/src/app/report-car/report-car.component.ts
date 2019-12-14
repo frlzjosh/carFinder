@@ -33,6 +33,7 @@ export class ReportCarComponent implements OnInit {
 
   async ngOnInit() {
     this.checkForCreatePosts();
+    this.carService.createCarMakeList();
     this.carMakeList = await this.carService.getCarMakeList();
     const userInformation = await this.oktaAuth.getUser();
     this.userService.setUser(userInformation);
