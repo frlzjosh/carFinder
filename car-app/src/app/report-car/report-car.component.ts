@@ -33,17 +33,27 @@ export class ReportCarComponent implements OnInit {
 
   async ngOnInit() {
     this.checkForCreatePosts();
-    this.carService.createCarMakeList();
-    this.carMakeList = await this.carService.getCarMakeList();
-    const userInformation = await this.oktaAuth.getUser();
-    this.userService.setUser(userInformation);
+    this.generateCarPosts();
+    // this.beginUserProcess();
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean)  => {
         this.isAuthenticated = isAuthenticated
       }
     );
   }
-  
+
+  async ngAfterViewInit(){
+    this.beginUserProcess();
+  }
+
+  async beginUserProcess(){
+    const userInformation = await this.oktaAuth.getUser();
+    this.userService.setUser(userInformation);
+  }
+  async generateCarPosts(){
+    this.carService.createCarMakeList();
+    this.carMakeList = await this.carService.getCarMakeList();
+  }
   checkForCreatePosts(){
     this.carService.isCarPostMade$.subscribe(resp=>{
         this.isPostMade = resp

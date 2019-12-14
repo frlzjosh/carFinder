@@ -38,7 +38,7 @@ public class OopApplication extends SpringBootServletInitializer {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Collections.singletonList("https://car-app.netlify.com/**"));
+        config.setAllowedOrigins(Collections.singletonList("https://car-app.netlify.com"));
         config.setAllowedMethods(Collections.singletonList("*"));
         config.setAllowedHeaders(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
