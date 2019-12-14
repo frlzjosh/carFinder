@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.example.oop.Models.User;
 import com.example.oop.Repositories.UserRepository;
 
@@ -15,14 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserController{
+public class UserController {
 
     @Autowired
     UserRepository userRepository;
 
-
     @PostMapping("/createUser")
-    public User postUserInfo(@RequestBody Map<String, String> body){
+    public User postUserInfo(@Valid @RequestBody Map<String, String> body) {
         User user = new User(body.get("userID"), body.get("userName"), body.get("firstName"), body.get("lastName"));
         return userRepository.save(user);
     }

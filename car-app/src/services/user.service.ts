@@ -39,10 +39,10 @@ export class UserService {
       Authorization: 'Bearer ' + token
     });
     let body = {
-      userID: userObj.userID,
-      firstName: userObj.firstName,
-      lastName: userObj.lastName,
-      userName: userObj.userName
+      userID: userObj.sub,
+      firstName: userObj.given_name,
+      lastName: userObj.family_name,
+      userName: userObj.name
     }
     return this.http.post<any>('https://car-app-258808.appspot.com/createUser',body, {headers: headers}).subscribe(resp=>{
       console.log(resp);
