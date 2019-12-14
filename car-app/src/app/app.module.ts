@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CreateComponent } from './create/create.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReportCarComponent } from './report-car/report-car.component';
 import { HttpModule } from '@angular/http';
@@ -18,7 +17,6 @@ import { TokenService } from 'src/services/token.service';
   declarations: [
     AppComponent,
     DashboardComponent,
-    CreateComponent,
     ReportCarComponent,
   ],
   imports: [
@@ -28,8 +26,6 @@ import { TokenService } from 'src/services/token.service';
     FormsModule,
     HttpClientModule,
     CommonModule,
-    // RouterModule.forRoot(appRoutes),
-    // OktaAuthModule.initAuth(config),
     HttpModule,
     AuthRoutingModule
   ],

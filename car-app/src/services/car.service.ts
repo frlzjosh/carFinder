@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { carMakes } from './../assets/data/car';
 import { OktaAuthService } from '@okta/okta-angular';
 
@@ -9,7 +9,9 @@ import { OktaAuthService } from '@okta/okta-angular';
 })
 export class CarService {
 
-  public carMake: string[] = []
+  public carMakeList: string[] = []
+  public isCarPostMade = new BehaviorSubject<boolean>(false);
+  public isCarPostMade$ =  this.isCarPostMade.asObservable();
 
   constructor(
     public http: HttpClient,
@@ -17,10 +19,13 @@ export class CarService {
   ) { }
 
 
-  getCarMakes(){
+  createCarMakeList(){
     carMakes.map(resp=>{
-      this.carMake.push(resp)
+      this.carMakeList.push(resp)
     })
+  }
+  getCarMakeList(): string[]{
+    return this.carMakeList;
   }
 
   async queryCars(Obj){
@@ -36,8 +41,15 @@ export class CarService {
       year: Obj.year,
       isSalvaged: Obj.isSalvaged
     }
-    console.log('in queryCars')
-
-    return this.http.post<any>('https://car-app-258808.appspot.com/createCar',body,{headers: headers}).subscribe(resp=>{console.log('response from api call: ', resp)})
+    return this.http.post<any>('https://car-app-258808.appspot.com/createCar',body,{headers: headers})
+      .subscribe((resp)=>{
+        this.isCarPostMade.next(true);
+      })
   }
+
+  getIsCarPostMade(){
+    return of(this.isCarPostMade);
+  }
+
+
 }

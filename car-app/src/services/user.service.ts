@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams} from '@angular/common/http'
+import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http'
 import { Observable, BehaviorSubject } from 'rxjs';
 import { OktaAuthService } from '@okta/okta-angular';
 
@@ -17,7 +17,7 @@ export class UserService {
   userName$ = new BehaviorSubject([])
   constructor(
     public http: HttpClient,
-    public okta: OktaAuthService
+    public oktaAuth: OktaAuthService
   ) { }
 
   setUser(user){
@@ -25,16 +25,27 @@ export class UserService {
     this.user.firstName = user.given_name
     this.user.lastName = user.family_ame
     this.user.userName = user.name
+    this.createUser(user);
   }
   
   getUserName(){ 
     return this.user.userName
   }
 
-  createUser(userObj): Observable<any>{
-    
-    let params = new HttpParams().set("firstName", userObj.firstName).set("lastName", userObj.lastName).set("userName", userObj.userName)
-    return this.http.get('https://car-app-258808.appspot.com//createUser', {params: params})
+  async createUser(userObj){
+    const token = await this.oktaAuth.getAccessToken()
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token
+    });
+    let body = {
+      userID: userObj.userID,
+      firstName: userObj.firstName,
+      lastName: userObj.lastName,
+      userName: userObj.userName
+    }
+    return this.http.post('https://car-app-258808.appspot.com//createUser',body, {headers: headers}).subscribe(resp=>{
+      console.log(resp);
+    });
   }
 
   public checkUser(userName: string): Observable<any>{

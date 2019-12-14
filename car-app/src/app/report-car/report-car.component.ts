@@ -21,6 +21,7 @@ export class ReportCarComponent implements OnInit {
   public yearOfCar: string
   public isSalvaged: string
   public isAuthenticated: boolean
+  public isPostMade = false;
 
   constructor(
     public http: HttpClient,
@@ -31,16 +32,24 @@ export class ReportCarComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.checkForCreatePosts();
+    this.carMakeList = await this.carService.getCarMakeList();
     const userInformation = await this.oktaAuth.getUser();
     this.userService.setUser(userInformation);
-    this.carService.getCarMakes();
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean)  => {
         this.isAuthenticated = isAuthenticated
       }
     );
   }
+  
+  checkForCreatePosts(){
+    this.carService.isCarPostMade$.subscribe(resp=>{
+        this.isPostMade = resp
+      }      
+    )
 
+  }
   selectVehicle(val){
     this.displayMakeMessage = 'You Selected: ' + val
     this.currentCarMake = val
