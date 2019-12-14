@@ -34,7 +34,6 @@ export class ReportCarComponent implements OnInit {
   async ngOnInit() {
     this.checkForCreatePosts();
     this.generateCarPosts();
-    // this.beginUserProcess();
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean)  => {
         this.isAuthenticated = isAuthenticated
