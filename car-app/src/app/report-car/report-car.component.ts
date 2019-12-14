@@ -43,7 +43,7 @@ export class ReportCarComponent implements OnInit {
   }
 
   async ngAfterViewInit(){
-    // this.beginUserProcess();
+    this.beginUserProcess();
   }
 
   async beginUserProcess(){
