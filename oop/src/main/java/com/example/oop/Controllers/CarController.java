@@ -20,8 +20,7 @@ public class CarController {
     @Autowired
     CarRepository carRespository;
 
-    @PostMapping(value="/getCarInfo", consumes = "application/json", produces = "application/json")
-    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/createCar")
     public Car createCar( @RequestBody Map<String, String> body){
         return carRespository.save(
             new Car(
