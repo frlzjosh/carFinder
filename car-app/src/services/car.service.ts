@@ -24,27 +24,27 @@ export class CarService {
   }
 
   public queryCars(Obj):Observable<any>{
-    let headers: HttpHeaders = new HttpHeaders();
+    let headers;
     const token = this.oktaAuth.getAccessToken().then(resp=>{
-      return resp
+      return resp;
     }) 
-
     token.then(resp=>{
       if(resp){
-        console.log('token: ', resp)
-        headers = headers.append('Authorization', resp)
+        headers = new HttpHeaders()
+        .set('Authorization', resp)
+        .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
       }
     })
-    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
     console.log('headers: ', headers)
-    let params = new HttpParams()
-      .set("userID", Obj.id)
-      .set("make", Obj.make)
-      .set("model", Obj.model)
-      .set("year", Obj.year)
-      .set("isSalvaged", Obj.isSalvaged)
+    let body = {
+      userID: Obj.id,
+      make: Obj.make,
+      model: Obj.model,
+      year: Obj.year,
+      isSalvaged: Obj.isSalvaged
+    }
 
-    return this.http.get('https://car-app-258808.appspot.com/createCar',{params:params, headers: headers})
+    return this.http.post('https://car-app-258808.appspot.com/createCar',body,{headers: headers})
   }
 }

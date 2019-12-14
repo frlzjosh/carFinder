@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateComponent } from './create/create.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ReportCarComponent } from './report-car/report-car.component';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
@@ -33,7 +33,6 @@ import { TokenService } from 'src/services/token.service';
     HttpModule,
     AuthRoutingModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
