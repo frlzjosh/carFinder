@@ -22,7 +22,7 @@ public class UserController{
 
 
     @PostMapping("/createUser")
-    public User getUserInfo(@RequestBody Map<String, String> body){
+    public User postUserInfo(@RequestBody Map<String, String> body){
         User user = new User(body.get("userID"), body.get("userName"), body.get("firstName"), body.get("lastName"));
         return userRepository.save(user);
     }

@@ -10,7 +10,7 @@ import { OktaAuthService } from '@okta/okta-angular';
 export class CarService {
 
   public carMakeList: string[] = []
-  public isCarPostMade = new BehaviorSubject<boolean>(false);
+  public isCarPostMade =new BehaviorSubject<boolean>(false);
   public isCarPostMade$ =  this.isCarPostMade.asObservable();
 
   constructor(
