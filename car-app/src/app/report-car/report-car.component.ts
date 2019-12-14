@@ -31,23 +31,15 @@ export class ReportCarComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    const userInformation = await this.oktaAuth.getUser()
+    const userInformation = await this.oktaAuth.getUser();
     this.userService.setUser(userInformation);
-    this.carService.getCarMakes()
+    this.carService.getCarMakes();
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean)  => {
         this.isAuthenticated = isAuthenticated
       }
     );
   }
-
-  ngAfterViewInit(){
-    //async issue.
-    setTimeout( () => {
-      this.carMakeList = this.carService.carMake
-    }, 1)
-  }
-  
 
   selectVehicle(val){
     this.displayMakeMessage = 'You Selected: ' + val
@@ -62,7 +54,7 @@ export class ReportCarComponent implements OnInit {
   reportCar(){
     let id = this.userService.user.id
     let carObject = {id: id, make: this.currentCarMake, model: this.modelOfCar, year: this.yearOfCar, isSalvaged: this.isSalvaged}
-    this.carService.queryCars(carObject).subscribe()
+    this.carService.queryCars(carObject)
   }
 
 

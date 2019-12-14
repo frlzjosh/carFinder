@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OAuthController{
     
-    @CrossOrigin(origins ="http://localhost:4200")
     @GetMapping("api/messages")
     public List<String> getMessages(Principal principal) {
         return Arrays.asList(principal.toString());

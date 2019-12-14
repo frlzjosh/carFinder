@@ -17,26 +17,18 @@ export class CarService {
   ) { }
 
 
-  public getCarMakes(){
+  getCarMakes(){
     carMakes.map(resp=>{
       this.carMake.push(resp)
     })
   }
 
-  public queryCars(Obj):Observable<any>{
+  async queryCars(Obj){
     let headers;
-    const token = this.oktaAuth.getAccessToken().then(resp=>{
-      return resp;
-    }) 
-    token.then(resp=>{
-      if(resp){
-        headers = new HttpHeaders()
-        .set('Authorization', resp)
-        .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-      }
-    })
-
-    console.log('headers: ', headers)
+    const token = await this.oktaAuth.getAccessToken()
+    headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token
+    });
     let body = {
       userID: Obj.id,
       make: Obj.make,
@@ -44,7 +36,8 @@ export class CarService {
       year: Obj.year,
       isSalvaged: Obj.isSalvaged
     }
+    console.log('in queryCars')
 
-    return this.http.post('https://car-app-258808.appspot.com/createCar',body,{headers: headers})
+    return this.http.post<any>('https://car-app-258808.appspot.com/createCar',body,{headers: headers}).subscribe(resp=>{console.log('response from api call: ', resp)})
   }
 }

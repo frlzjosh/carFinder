@@ -5,12 +5,12 @@ import { OktaCallbackComponent } from '@okta/okta-angular';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular';
-import { AuthInterceptor } from './shared/okta/auth.interceptor';
 import { ReportCarComponent } from './report-car/report-car.component';
+import {environment} from './../environments/environment'
 
 export const oktaConfig = {
   issuer: 'https://dev-459112.okta.com/oauth2/default',
-  redirectUri: 'http://localhost:4200/implicit/callback',
+  redirectUri: 'http://'+environment.clientServer+'/implicit/callback',
   clientId: '0oa25pgd7kGzHFvZF357',
   pkce: true,
   scope: ['openid', 'profile', 'email']
