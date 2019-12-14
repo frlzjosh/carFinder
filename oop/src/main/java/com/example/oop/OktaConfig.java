@@ -28,31 +28,4 @@ public class OktaConfig extends WebSecurityConfigurerAdapter{
             .jwt();
         Okta.configureResourceServer401ResponseBody(http);
     }
-
-    
-
-    // @Bean
-    // CorsConfigurationSource corsConfigurationSource() {
-    //     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    //     source.registerCorsConfiguration("https://car-app.netlify.com/**", new CorsConfiguration().applyPermitDefaultValues());
-    //     return source;
-    // }
-    
-    // RequestMatcher csrfRequestMatcher = new RequestMatcher() {
-    //     private AntPathRequestMatcher[] requestMatchers = {
-    //         new AntPathRequestMatcher("/**/verify"),
-    //         new AntPathRequestMatcher("/**/login*")
-    //     };
-    //     @Override
-    //     public boolean matches(final HttpServletRequest request) {
-    //         // If the request match one url the CSFR protection will be enabled
-    //         for (final AntPathRequestMatcher rm : requestMatchers) {
-    //             if (rm.matches(request)) {
-    //                 System.out.println();
-    //                 /* return true; */
-    //             }
-    //         }
-    //         return false;
-    //     } // method matches
-    // };
 }
