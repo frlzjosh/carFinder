@@ -10,7 +10,7 @@ import {environment} from './../environments/environment'
 
 export const oktaConfig = {
   issuer: 'https://dev-459112.okta.com/oauth2/default',
-  redirectUri: environment.clientServer+'/implicit/callback',
+  redirectUri: 'https://car-app.netlify.com/implicit/callback',
   clientId: '0oa25pgd7kGzHFvZF357',
   pkce: true,
   scope: ['openid', 'profile', 'email']
