@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CarService } from 'src/services/car.service';
 import { UserService } from 'src/services/user.service';
 
@@ -7,7 +7,7 @@ import { UserService } from 'src/services/user.service';
   templateUrl: './show-cars.component.html',
   styleUrls: ['./show-cars.component.scss']
 })
-export class ShowCarsComponent implements OnInit {
+export class ShowCarsComponent implements AfterViewInit {
 
   public usersCars;
   public userID = this.userService.getUserID();
@@ -17,7 +17,8 @@ export class ShowCarsComponent implements OnInit {
     public userService: UserService
   ) { }
 
-  async ngOnInit() {
+  async ngAfterViewInit() {
+    console.log(this.userId)
     this.usersCars = await this.carService.getUsersCars(this.userID)
   }
 
