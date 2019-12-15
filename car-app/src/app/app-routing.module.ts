@@ -10,7 +10,6 @@ const routes: Routes = [
   },
   {
     path:'report-car', component: ReportCarComponent, canActivate: [OktaAuthGuard]
-
   },
 ];
 

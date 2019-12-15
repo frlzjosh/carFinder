@@ -1,5 +1,6 @@
 package com.example.oop.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CarController {
 
     @Autowired
-    CarRepository carRespository;
+    CarRepository carRepository;
 
     @PostMapping("/createCar")
-    public Car createCar( @RequestBody Map<String, String> body){
-        return carRespository.save(
+    public Car createCar( @RequestBody final Map<String, String> body){
+        return carRepository.save(
             new Car(
                 body.get("userID"),
                 body.get("make"), 
@@ -34,6 +35,11 @@ public class CarController {
 
     @GetMapping("/getCars")
     public List<Car> getCars(@RequestParam String userID){
-        return carRespository.findCarByUserId(userID);
+        final List<Car> carList = new ArrayList<>(carRepository.findAllByUserID(userID));
+        return carList;
+    }
+    @GetMapping("/test")
+    public String testAPI(){
+        return "hello world";
     }
 }   

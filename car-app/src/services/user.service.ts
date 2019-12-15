@@ -32,6 +32,10 @@ export class UserService {
     return this.user.userName
   }
 
+  public getUserID(){
+    return this.user.id;
+  }
+
   async createUser(userObj){
     const token = await this.oktaAuth.getAccessToken()
     const headers = new HttpHeaders({

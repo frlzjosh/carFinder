@@ -69,7 +69,7 @@ export class ReportCarComponent implements OnInit {
   }
 
   reportCar(){
-    let id = this.userService.user.id
+    let id = this.userService.getUserID();
     let carObject = {id: id, make: this.currentCarMake, model: this.modelOfCar, year: this.yearOfCar, isSalvaged: this.isSalvaged}
     this.carService.queryCars(carObject)
   }

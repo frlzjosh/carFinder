@@ -8,10 +8,11 @@ import java.util.List;
 
 import com.example.oop.Models.Car;
 
+
 @Repository
 public interface CarRepository extends JpaRepository<Car, String> {
 
     // custom query to search to blog post by title or content
-    List<Car> findCarByUserId(String userID);
+    List<Car> findAllByUserID(String userID);
     
 }

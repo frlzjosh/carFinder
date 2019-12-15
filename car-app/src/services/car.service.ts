@@ -29,9 +29,8 @@ export class CarService {
   }
 
   async queryCars(Obj){
-    let headers;
     const token = await this.oktaAuth.getAccessToken()
-    headers = new HttpHeaders({
+    const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token
     });
     let body = {
@@ -45,6 +44,22 @@ export class CarService {
       .subscribe((resp)=>{
         this.isCarPostMade.next(true);
       })
+  }
+
+  async getUsersCars(userID){
+    const token = await this.oktaAuth.getAccessToken()
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token
+    });
+    let params = new HttpParams().set("userID", userID)
+
+    return this.http.get<any>('https://car-app-258808.appspot.com/getCars',{
+      params: params,
+      headers: headers
+    }).subscribe(resp=>{
+      console.log(resp);
+    })
+
   }
 
   getIsCarPostMade(){
