@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,9 @@ import { OktaAuthService } from '@okta/okta-angular';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isAuthenticated: boolean;
+  public isAuthenticated: boolean;
 
-  constructor(public oktaAuth: OktaAuthService) {
+  constructor(public oktaAuth: OktaAuthService, public router: Router) {
   }
 
   async ngOnInit() {
@@ -18,5 +19,8 @@ export class HomeComponent implements OnInit {
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
     );
+    if(this.isAuthenticated == true){
+      this.router.navigate(['/report-car'])
+    }
   }
 }
