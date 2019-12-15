@@ -10,7 +10,7 @@ import { OktaAuthService } from '@okta/okta-angular';
 export class UserService {
   public user = { 
     firstName: null,
-    id: 0,
+    id: null,
     lastName: null,
     userName: null,
   }

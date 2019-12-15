@@ -10,7 +10,7 @@ import { UserService } from 'src/services/user.service';
 export class ShowCarsComponent implements AfterViewInit {
 
   public usersCars;
-  public userID = this.userService.getUserID();
+  public userID: String
 
   constructor(
     public carService: CarService,
@@ -18,8 +18,13 @@ export class ShowCarsComponent implements AfterViewInit {
   ) { }
 
   async ngAfterViewInit() {
-    console.log(this.userId)
+    this.userID = await this.userService.getUserID();
     this.usersCars = await this.carService.getUsersCars(this.userID)
+  }
+
+  getUsersCars(){
+    console.log(this.userID)
+    this.carService.getUsersCars(this.userID);
   }
 
 }
