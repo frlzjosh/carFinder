@@ -41,6 +41,7 @@ const routes: Routes = [
   providers: [
     { provide: OKTA_CONFIG, useValue: oktaConfig },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+
   ],
   exports: [RouterModule]
 })
