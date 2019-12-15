@@ -33,7 +33,6 @@ export class UserService {
   }
 
   async createUser(userObj){
-    console.log('userObj: ', userObj)
     const token = await this.oktaAuth.getAccessToken()
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token
