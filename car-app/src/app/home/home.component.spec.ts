@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { OktaAuthModule } from '@okta/okta-angular';
 import { RouterTestingModule } from '@angular/router/testing';
-import {environment} from './../environments/environment';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -17,7 +16,7 @@ describe('HomeComponent', () => {
         OktaAuthModule.initAuth({
           issuer: 'https://not-real.okta.com',
           clientId: 'fake-client-id',
-          redirectUri: environment.clientServer
+          redirectUri: 'http://localhost:4200'
         })
       ]
     })

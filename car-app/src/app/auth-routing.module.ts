@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OktaCallbackComponent } from '@okta/okta-angular';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular';
-import { ReportCarComponent } from './report-car/report-car.component';
-import {environment} from './../environments/environment'
+import { AuthInterceptor } from './shared/okta/auth.interceptor';
 
-export const oktaConfig = {
+const oktaConfig = {
   issuer: 'https://dev-459112.okta.com/oauth2/default',
-  redirectUri: 'https://car-app.netlify.com/implicit/callback',
+  redirectUri:'https:/car-app.netlify.com/implicit/callback',
   clientId: '0oa25pgd7kGzHFvZF357',
   pkce: true,
   scope: ['openid', 'profile', 'email']
+
 };
 
 const routes: Routes = [
@@ -21,10 +21,6 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
-  },
-  {
-    path: 'report-car',
-    component: ReportCarComponent
   },
   {
     path: 'implicit/callback',
