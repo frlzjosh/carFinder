@@ -1,4 +1,4 @@
-<div *ngFor="let cars of Object.keys(usersCars);">
+<div *ngFor="let cars of usersCars | keyvalue">
     <p>{{cars.userID}}</p>
     <p>{{cars.model}}</p>
     <p>{{cars.make}}</p>
