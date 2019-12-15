@@ -1,30 +1,45 @@
 package com.example.oop.Models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Car {
-    @Id 
+@Table(name="car")
+public class Car implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_id")
     int id;
     
     @Column(name="user_id")
-    int userID;
+    String userID;
+
+    @Column(name="model")
     String model;
+
+    @Column(name="make")
     String make;
+
+    @Column(name="year")
     String year;
+    
+    @Column(name="is_salvaged")
     String isSalvaged;
 
     public Car(){
         super();
     }
 
-    public Car(int userID, String make, String model, String year, String isSalvaged) {
+    public Car(String userID, String make, String model, String year, String isSalvaged) {
         this.userID = userID;
         this.model = model;
         this.make = make;
@@ -32,11 +47,11 @@ public class Car {
         this.isSalvaged = isSalvaged;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 

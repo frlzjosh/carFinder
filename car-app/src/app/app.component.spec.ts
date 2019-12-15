@@ -1,12 +1,26 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+<<<<<<< HEAD
+=======
+import { OktaAuthModule } from '@okta/okta-angular';
+import {environment} from './../environments/environment';
+>>>>>>> CA--gcp-deploy
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+<<<<<<< HEAD
         RouterTestingModule
+=======
+        RouterTestingModule,
+        OktaAuthModule.initAuth({
+          issuer: 'https://not-real.okta.com',
+          clientId: 'fake-client-id',
+          redirectUri: environment.clientServer
+        })
+>>>>>>> CA--gcp-deploy
       ],
       declarations: [
         AppComponent

@@ -1,32 +1,55 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { carMakes } from './../assets/data/car'
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
 
-  public carMake: string[] = []
+  public carMakeList: string[] = []
+  public isCarPostMade =new BehaviorSubject<boolean>(false);
+  public isCarPostMade$ =  this.isCarPostMade.asObservable();
 
-  constructor(public http: HttpClient) { }
+  constructor(
+    public http: HttpClient,
+    public oktaAuth: OktaAuthService
+  ) { }
 
-  public getCarMakes(){
-    this.http.get('https://private-anon-d669de0f06-carsapi1.apiary-mock.com/manufacturers').subscribe(resp => {
-      Object.keys(resp).forEach((element, index) => {
-        this.carMake.push(resp[index].name.toUpperCase())
-      })
+
+  createCarMakeList(){
+    carMakes.map(resp=>{
+      this.carMakeList.push(resp)
     })
   }
-
-  public queryCars(Obj):Observable<any>{
-    let params = new HttpParams()
-      .set("userID", Obj.id)
-      .set("make", Obj.make)
-      .set("model", Obj.model)
-      .set("year", Obj.year)
-      .set("isSalvaged", Obj.isSalvaged)
-
-    return this.http.get('http://localhost:8080/createCar',{params:params} )
+  getCarMakeList(): string[]{
+    return this.carMakeList;
   }
+
+  async queryCars(Obj){
+    let headers;
+    const token = await this.oktaAuth.getAccessToken()
+    headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token
+    });
+    let body = {
+      userID: Obj.id,
+      make: Obj.make,
+      model: Obj.model,
+      year: Obj.year,
+      isSalvaged: Obj.isSalvaged
+    }
+    return this.http.post<any>('https://car-app-258808.appspot.com/createCar',body,{headers: headers})
+      .subscribe((resp)=>{
+        this.isCarPostMade.next(true);
+      })
+  }
+
+  getIsCarPostMade(){
+    return of(this.isCarPostMade);
+  }
+
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CarService } from '../../services/car.service'
 import { UserService } from 'src/services/user.service';
+import { OktaAuthService } from '@okta/okta-angular';
 @Component({
   selector: 'app-report-car',
   templateUrl: './report-car.component.html',
@@ -18,25 +19,45 @@ export class ReportCarComponent implements OnInit {
   public modelOfCar: string
   public yearOfCar: string
   public isSalvaged: string
+  public isAuthenticated: boolean
+  public isPostMade = false;
 
   constructor(
     public http: HttpClient,
     public carService: CarService,
-    public userService: UserService
+    public userService: UserService,
+    public oktaAuth: OktaAuthService
   ) { }
 
-  ngOnInit() {
-    this.carService.getCarMakes()
+  async ngOnInit() {
+    this.checkForCreatePosts();
+    this.generateCarPosts();
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean)  => {
+        this.isAuthenticated = isAuthenticated
+      }
+    );
   }
 
-  ngAfterViewInit(){
-    //async issue.
-    setTimeout( () => {
-      this.carMakeList = this.carService.carMake
-    }, 1)
+  async ngAfterViewInit(){
+    this.beginUserProcess();
   }
-  
 
+  async beginUserProcess(){
+    const userInformation = await this.oktaAuth.getUser();
+    this.userService.setUser(userInformation);
+  }
+  async generateCarPosts(){
+    this.carService.createCarMakeList();
+    this.carMakeList = await this.carService.getCarMakeList();
+  }
+  checkForCreatePosts(){
+    this.carService.isCarPostMade$.subscribe(resp=>{
+        this.isPostMade = resp
+      }      
+    )
+
+  }
   selectVehicle(val){
     this.displayMakeMessage = 'You Selected: ' + val
     this.currentCarMake = val
@@ -50,7 +71,7 @@ export class ReportCarComponent implements OnInit {
   reportCar(){
     let id = this.userService.user.id
     let carObject = {id: id, make: this.currentCarMake, model: this.modelOfCar, year: this.yearOfCar, isSalvaged: this.isSalvaged}
-    this.carService.queryCars(carObject).subscribe()
+    this.carService.queryCars(carObject)
   }
 
 

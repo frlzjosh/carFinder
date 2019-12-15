@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CreateComponent } from './create/create.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReportCarComponent } from './report-car/report-car.component';
+import { CommonModule } from '@angular/common';
+import { AuthRoutingModule } from './auth-routing.module';
 
 
 @NgModule({
@@ -16,7 +17,6 @@ import { ReportCarComponent } from './report-car/report-car.component';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    CreateComponent,
     ReportCarComponent,
   ],
   imports: [
@@ -24,9 +24,10 @@ import { ReportCarComponent } from './report-car/report-car.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    AuthRoutingModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

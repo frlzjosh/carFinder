@@ -1,21 +1,30 @@
+  
 package com.example.oop.Models;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="users")
-public class User{
+public class User implements Serializable{
 
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    @Column(name="id", unique=true, nullable = false)
+    String id;
 
+    
+    @Column(name="user_name")
     String userName;
+
+    @Column(name="first_name")
     String firstName;
+
+    @Column(name="last_name")
     String lastName;
 
     public User(){
@@ -47,10 +56,10 @@ public class User{
         this.lastName = lastName;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     @Override
@@ -68,7 +77,7 @@ public class User{
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    public User(int id, String userName, String firstName, String lastName) {
+    public User(String id, String userName, String firstName, String lastName) {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;
