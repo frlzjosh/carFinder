@@ -1,5 +1,6 @@
 package com.example.oop.Controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import com.example.oop.Models.Car;
@@ -32,7 +33,7 @@ public class CarController {
     }
 
     @GetMapping("/getCars")
-    public Car getCars(@RequestParam String userID){
+    public List<Car> getCars(@RequestParam String userID){
         return carRespository.findCarByUserId(userID);
     }
 }   
