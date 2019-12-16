@@ -71,11 +71,4 @@ export class CarService {
     return this.http.delete('https://car-app-258808.appspot.com/deleteCar', {params: params, headers: headers});
   }
 
-  
-
-  getIsCarPostMade(){
-    return of(this.isCarPostMade);
-  }
-
-
 }

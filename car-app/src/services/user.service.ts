@@ -36,7 +36,6 @@ export class UserService {
   }
 
   getUserID(){
-    console.log('userID from service: ', this.user.id)
     return this.user.id;
   }
 
@@ -52,7 +51,6 @@ export class UserService {
       userName: userObj.name
     }
     return this.http.post<any>('https://car-app-258808.appspot.com/createUser',body, {headers: headers}).subscribe(resp=>{
-      console.log(resp);
     });
   }
 

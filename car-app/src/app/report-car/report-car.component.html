@@ -28,6 +28,12 @@
             </div>
         </div> 
     </div>
+    <div *ngIf="isPostMade" class="row">
+        <div (click)="hideAlert()" class="report-car__alert col-12 mt-4">
+            <p class="report-car__inline-text"><strong>X</strong></p>
+            <p class="report-car__inline-text">Your Car Has Been Reported. Click Refresh Below To See</p>
+        </div>
+    </div>
     <div class="row mt-5">
         <div class="col-12 text-center">
             <button (click)="reportCar()"class="btn btn-danger">Report Missing Car</button>

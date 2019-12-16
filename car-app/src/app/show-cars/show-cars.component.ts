@@ -22,11 +22,9 @@ export class ShowCarsComponent implements OnInit {
     this.userService.userData$.subscribe((usr)=>{
       this.userID = usr.id;
       this.userName = usr.userName;
-      console.log(usr);
       this.carService.getUsersCars(usr.id).then(
         (resp)=>{
           resp.subscribe((cars)=>{
-            console.log(cars);
             this.usersCars = cars;
           })
         }

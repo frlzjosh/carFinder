@@ -2,4 +2,14 @@
     &__button{
         border-bottom: 1px solid lightcoral;
     }
+    &__alert{
+        background-color: green;
+        color: white;
+        text-align: center;
+        border-radius: 3px;
+    }
+    &__inline-text{
+        margin: 4px;
+        display: inline;
+    }
 }

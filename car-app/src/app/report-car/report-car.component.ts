@@ -14,7 +14,7 @@ export class ReportCarComponent implements OnInit {
   public yesNoList: string[] = ['Yes', 'No']
   public vehicle: string
   public displayMakeMessage: string = 'Select Your Car Make'
-  public displayIsSalvagedMessage: string = 'Is Your Car Salvaged'
+  public displayIsSalvagedMessage: string = 'Is Your Car Salvaged?'
   public currentCarMake: string
   public modelOfCar: string
   public yearOfCar: string
@@ -66,11 +66,25 @@ export class ReportCarComponent implements OnInit {
     this.displayIsSalvagedMessage = 'You Selected: ' + val
     this.isSalvaged = val
   }
+  resetForm(){
+    this.isSalvaged = null;
+    this.yearOfCar = null;
+    this.modelOfCar = null;
+    this.currentCarMake = null;
+    this.displayIsSalvagedMessage = 'Is Your Car Salvaged?'
+    this.displayMakeMessage = 'Select Your Car Make'
+  }
 
   reportCar(){
     let id = this.userService.getUserID();
     let carObject = {id: id, make: this.currentCarMake, model: this.modelOfCar, year: this.yearOfCar, isSalvaged: this.isSalvaged}
-    this.carService.queryCars(carObject)
+    this.carService.queryCars(carObject).then(resp=>{
+      this.resetForm();
+      this.isPostMade = true
+    })
+  }
+  hideAlert(){
+    this.isPostMade = false;
   }
 
 
