@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
     );
-    if(this.isAuthenticated == true){
-      this.router.navigate(['/report-car'])
-    }
+    // if(this.isAuthenticated == true){
+    //   this.router.navigate(['/report-car'])
+    // }
   }
 }
