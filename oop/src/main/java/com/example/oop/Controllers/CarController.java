@@ -1,11 +1,14 @@
 package com.example.oop.Controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.example.oop.Models.Car;
 import com.example.oop.Repositories.CarRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,13 +32,13 @@ public class CarController {
         );
     }
     
-    // @DeleteMapping("/deleteCar")
-    // public List<Car> deleteCar(@RequestBody Map<String, String> body){
-    //     return new ArrayList<>(
-    //         carRepository.deleteByCarIDAndUserID(
-    //             Integer.parseInt(body.get("carID")),
-    //             body.get("userID")
-    //         )
-    //     ); 
-    // }
+    @DeleteMapping("/deleteCar")
+    public List<Car> deleteCar(@RequestBody Map<String, String> body){
+        return new ArrayList<>(
+            carRepository.deleteByIdAndUserID(
+                Integer.parseInt(body.get("carID")),
+                body.get("userID")
+            )
+        ); 
+    }
 }   

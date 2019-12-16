@@ -19,13 +19,13 @@ public class UserCarController{
 
     @GetMapping("/getCarsV1")
     public List<Car> getCarsV1(@RequestParam String userID){
-            final List<Car> userCarList = new ArrayList<>(carRepository.findByUserID(userID));
+            final List<Car> userCarList = new ArrayList<>(carRepository.findAllByUserID(userID));
             return userCarList;
     }
 
     @GetMapping("/getCarsV2")
     public List<UserCar> getCarsV2(@RequestParam String userID){
-        List<Car> carList = new ArrayList<>(carRepository.findByUserID(userID));
+        List<Car> carList = new ArrayList<>(carRepository.findAllByUserID(userID));
         List<UserCar> userCarList = new ArrayList<>();
         for(int i = 0; i < carList.size(); i++){
             userCarList.add(

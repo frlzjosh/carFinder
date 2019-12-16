@@ -53,7 +53,7 @@ export class CarService {
     });
     let params = new HttpParams().set("userID", userID)
 
-    return this.http.get<any>('https://car-app-258808.appspot.com/getCars',{
+    return this.http.get<any>('https://car-app-258808.appspot.com/getCarsV1',{
       params: params,
       headers: headers
     })

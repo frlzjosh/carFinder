@@ -14,7 +14,7 @@ import com.example.oop.Models.UserCar;
 public interface CarRepository extends JpaRepository<Car, String> {
 
     // custom query to search to blog post by title or content
-    List<Car> findByUserID(String userID);
+    List<Car> findAllByUserID(String userID);
 
     List<Car> deleteByIdAndUserID(int id, String userID);
     
