@@ -6,9 +6,7 @@ import { MissingCarsComponent } from './missing-cars/missing-cars.component';
 
 
 const routes: Routes = [
-  {
-    path: '', redirectTo: '/report-car', pathMatch: 'full'
-  },
+  { path: '', redirectTo: '/report-car', pathMatch: 'full'},
   {
     path:'report-car', component: ReportCarComponent, canActivate: [OktaAuthGuard]
   },
