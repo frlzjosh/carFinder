@@ -35,14 +35,25 @@ public class Car implements Serializable {
     @Column(name="is_salvaged")
     String isSalvaged;
 
+    private String userName;
+
     public Car(){
         super();
     }
 
     public Car(String userID, String make, String model, String year, String isSalvaged) {
         this.userID = userID;
-        this.model = model;
         this.make = make;
+        this.model = model;
+        this.year = year;
+        this.isSalvaged = isSalvaged;
+    }
+    public Car(String userID, String userName, int carID, String make, String model, String year, String isSalvaged) {
+        this.userID = userID;
+        this.userName = userName;
+        this.id = carID;
+        this.make = make;
+        this.model = model;
         this.year = year;
         this.isSalvaged = isSalvaged;
     }
@@ -87,6 +98,8 @@ public class Car implements Serializable {
         this.isSalvaged = isSalvaged;
     }
 
+
+
     @Override
     public String toString() {
         return "Car={" +
@@ -96,6 +109,14 @@ public class Car implements Serializable {
             ", year='" + year + '\'' +
             ", isSalvaged='" + isSalvaged + '\'' +
         '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     

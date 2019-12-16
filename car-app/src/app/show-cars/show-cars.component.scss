@@ -18,10 +18,11 @@
         display: inline;
     }
     &__button{
+        color: red;
         margin-left: 20px;
         margin-right: 10px;
         cursor: pointer;
-        transform: scale(1.1);
+        transform: scale(1.3);
     }
 
 }

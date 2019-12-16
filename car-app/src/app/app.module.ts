@@ -10,6 +10,7 @@ import { ReportCarComponent } from './report-car/report-car.component';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ShowCarsComponent } from './show-cars/show-cars.component';
+import { MissingCarsComponent } from './missing-cars/missing-cars.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ShowCarsComponent } from './show-cars/show-cars.component';
     DashboardComponent,
     ReportCarComponent,
     ShowCarsComponent,
+    MissingCarsComponent,
   ],
   imports: [
     BrowserModule,

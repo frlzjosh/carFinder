@@ -53,16 +53,22 @@ export class CarService {
     });
     let params = new HttpParams().set("userID", userID)
 
-    return this.http.get<any>('https://car-app-258808.appspot.com/getCars',{
+    return this.http.get<any>('https://car-app-258808.appspot.com/getCarsV1',{
       params: params,
       headers: headers
     })
-
   }
 
-  getIsCarPostMade(){
-    return of(this.isCarPostMade);
-  }
+  async deleteUserCar(carID:number, _userID: string){
+    const token = await this.oktaAuth.getAccessToken()
+      const headers = new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      })
+      const params = new HttpParams()
+        .set("carID", JSON.stringify(carID))
+        .set("userID", _userID)
 
+    return this.http.delete('https://car-app-258808.appspot.com/deleteCar', {params: params, headers: headers});
+  }
 
 }

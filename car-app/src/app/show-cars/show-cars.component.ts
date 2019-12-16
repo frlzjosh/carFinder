@@ -33,7 +33,19 @@ export class ShowCarsComponent implements OnInit {
   }
 
   getUsersCars(){
-    this.carService.getUsersCars(this.userID);
+    this.carService.getUsersCars(this.userID).then(
+      promiseResponse=>{
+        promiseResponse.subscribe(
+          usrCars=>{
+            this.usersCars = usrCars;
+          }
+        )
+      }
+    )
+  }
+
+  deleteCar(user){
+    this.carService.deleteUserCar(user.id, this.userID).then(resp=>resp.subscribe())
   }
 
 }

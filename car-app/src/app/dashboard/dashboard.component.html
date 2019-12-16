@@ -2,6 +2,7 @@
     <div class="col-12">
         <p class="dashboard__item">Hello: <strong>{{userName}}</strong></p>
         <p routerLink="/report-car" class="dashboard__item">Post</p>
+        <p routerLink="/missing-cars" class="dashboard__item">More Reports</p>
         <p *ngIf="isAuthenticated" class="dashboard__item" (click)="oktaAuth.logout()">Logout</p>
     </div>
 </div>

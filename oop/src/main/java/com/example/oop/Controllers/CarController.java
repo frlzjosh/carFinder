@@ -8,20 +8,22 @@ import com.example.oop.Models.Car;
 import com.example.oop.Repositories.CarRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Transactional
 public class CarController {
 
     @Autowired
     CarRepository carRepository;
 
     @PostMapping("/createCar")
-    public Car createCar( @RequestBody final Map<String, String> body){
+    public Car createCar( @RequestBody Map<String, String> body){
         return carRepository.save(
             new Car(
                 body.get("userID"),
@@ -32,14 +34,15 @@ public class CarController {
             )
         );
     }
-
-    @GetMapping("/getCars")
-    public List<Car> getCars(@RequestParam String userID){
-        final List<Car> carList = new ArrayList<>(carRepository.findAllByUserID(userID));
-        return carList;
-    }
-    @GetMapping("/test")
-    public String testAPI(){
-        return "hello world";
+    
+    @DeleteMapping("/deleteCar")
+    public List<Car> deleteCar(@RequestParam String carID, @RequestParam String userID){
+        int _carID = Integer.parseInt(carID);
+        return new ArrayList<>(
+            carRepository.removeByIdAndUserID(
+                _carID,
+                userID
+            )
+        ); 
     }
 }   
