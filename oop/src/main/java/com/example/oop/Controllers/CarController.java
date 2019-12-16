@@ -36,7 +36,7 @@ public class CarController {
     @DeleteMapping("/deleteCar")
     public List<Car> deleteCar(@RequestParam Map<String, String> param){
         return new ArrayList<>(
-            carRepository.deleteByIdAndUserID(
+            carRepository.deleteCarsByIdAndUserID(
                 Integer.parseInt(param.get("carID")),
                 param.get("userID")
             )
