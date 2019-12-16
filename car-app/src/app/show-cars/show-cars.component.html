@@ -1,9 +1,9 @@
-<div *ngFor="let cars of usersCars | keyvalue">
-    <p>{{cars.userID}}</p>
-    <p>{{cars.model}}</p>
-    <p>{{cars.make}}</p>
-    <p>{{cars.year}}</p>
-    <p>{{cars.isSalvaged}}</p>
+<div class="show-car">
+    <h3 class="show-car__header">Cars Report By: {{userName}}</h3>
+    <div class="show-car__data" *ngFor="let user of usersCars">
+        <p class="show-car__button show-car__inline"><strong>x</strong></p>
+        <p class="show-car__field show-car__inline">Make: {{user.make}} | Model: {{user.model}} | Year: {{user.year}}</p>
+    </div> 
 </div>
 <div>
     <button (click)="getUsersCars()" class="btn btn-primary">Refresh Cars</button>

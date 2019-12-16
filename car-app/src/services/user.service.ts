@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http'
 import { Observable, BehaviorSubject } from 'rxjs';
 import { OktaAuthService } from '@okta/okta-angular';
-
+import { User } from './../interface/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  public user = { 
+  public user: User = { 
     firstName: null,
     id: null,
     lastName: null,
     userName: null,
   }
-  userName$ = new BehaviorSubject([])
+  public userData = new BehaviorSubject<User>(this.user);
+  public userData$ = this.userData.asObservable();
+
   constructor(
     public http: HttpClient,
     public oktaAuth: OktaAuthService
@@ -25,6 +27,7 @@ export class UserService {
     this.user.firstName = user.given_name
     this.user.lastName = user.family_ame
     this.user.userName = user.name
+    this.userData.next(this.user);
     this.createUser(user)
   }
   
@@ -32,7 +35,8 @@ export class UserService {
     return this.user.userName
   }
 
-  public getUserID(){
+  getUserID(){
+    console.log('userID from service: ', this.user.id)
     return this.user.id;
   }
 

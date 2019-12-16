@@ -6,7 +6,7 @@ import { OktaAuthGuard } from '@okta/okta-angular';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: '', redirectTo: '/report-car', pathMatch: 'full'
   },
   {
     path:'report-car', component: ReportCarComponent, canActivate: [OktaAuthGuard]

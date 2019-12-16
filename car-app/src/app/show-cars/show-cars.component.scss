@@ -1,0 +1,27 @@
+.show-car{
+    &__header{
+        text-align: center;
+        margin: 5px;
+    }
+    background-color: #FAFAFA;
+    &__data{
+    background-color: aliceblue;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    }
+    &__field{
+        padding-bottom: 5px;
+        padding: 10px;
+        border-bottom: 2px solid black;
+    }
+    &__inline{
+        display: inline;
+    }
+    &__button{
+        margin-left: 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+
+}

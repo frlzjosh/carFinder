@@ -5,25 +5,34 @@ import { UserService } from 'src/services/user.service';
 @Component({
   selector: 'app-show-cars',
   templateUrl: './show-cars.component.html',
-  styleUrls: ['./show-cars.component.scss']
+  styleUrls: ['./show-cars.component.scss'],
 })
-export class ShowCarsComponent implements AfterViewInit {
+export class ShowCarsComponent implements OnInit {
 
-  public usersCars;
-  public userID: String
+  public usersCars = [];
+  public userID: string
+  userName: string;
 
   constructor(
     public carService: CarService,
     public userService: UserService
   ) { }
 
-  async ngAfterViewInit() {
-    this.userID = await this.userService.getUserID();
-    this.usersCars = await this.carService.getUsersCars(this.userID)
+  async ngOnInit(){
+    this.userService.userData$.subscribe((usr)=>{
+      this.userID = usr.id;
+      this.userName = usr.userName;
+      this.carService.getUsersCars(usr.id).then(
+        (resp)=>{
+          resp.subscribe((cars)=>{
+            this.usersCars = cars;
+          })
+        }
+      )
+    })
   }
 
   getUsersCars(){
-    console.log(this.userID)
     this.carService.getUsersCars(this.userID);
   }
 

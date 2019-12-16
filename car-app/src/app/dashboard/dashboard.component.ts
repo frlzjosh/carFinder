@@ -31,9 +31,4 @@ export class DashboardComponent implements OnInit{
     this.userName = this.userService.getUserName()
   }
 
-
-  logout(){
-    this.router.navigate(['/login'])
-  }
-
 }

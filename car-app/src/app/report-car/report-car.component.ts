@@ -30,6 +30,7 @@ export class ReportCarComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.beginUserProcess();
     this.checkForCreatePosts();
     this.generateCarPosts();
     this.oktaAuth.$authenticationState.subscribe(
@@ -38,14 +39,12 @@ export class ReportCarComponent implements OnInit {
       }
     );
   }
-
   async ngAfterViewInit(){
-    this.beginUserProcess();
   }
 
   async beginUserProcess(){
     const userInformation = await this.oktaAuth.getUser();
-    this.userService.setUser(userInformation);
+    await this.userService.setUser(userInformation);
   }
   async generateCarPosts(){
     this.carService.createCarMakeList();

@@ -56,8 +56,6 @@ export class CarService {
     return this.http.get<any>('https://car-app-258808.appspot.com/getCars',{
       params: params,
       headers: headers
-    }).subscribe(resp=>{
-      console.log(resp);
     })
 
   }
