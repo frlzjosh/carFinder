@@ -59,14 +59,14 @@ export class CarService {
     })
   }
 
-  async deleteUserCar(_carID, _userID: string){
+  async deleteUserCar(carID:number, _userID: string){
     const token = await this.oktaAuth.getAccessToken()
       const headers = new HttpHeaders({
         Authorization: 'Bearer ' + token
       })
       const params = new HttpParams()
-      params.set("carID", _carID.toString())
-      params.set("userID", _userID)
+        .set("carID", JSON.stringify(carID))
+        .set("userID", _userID)
 
     return this.http.delete('https://car-app-258808.appspot.com/deleteCar', {params: params, headers: headers});
   }
