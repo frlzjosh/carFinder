@@ -28,20 +28,20 @@ public class UserController {
         return userRepository.save(user);
     }
 
-    @GetMapping("/doesUserHaveAnAccount")
-    public User compareUsers(@RequestParam String userName){
-        List<User> users = userRepository.findAll();
-        User user = new User();
-        for(int i = 0; i < users.size(); i++){
-            if(users.get(i).getUserName().compareTo(userName) == 0){
-                Optional<User> u = userRepository.findByUserName(users.get(i).getUserName());
-                String id = u.map(usr-> usr.getId()).orElse(null);
-                return new User(id, users.get(i).getUserName(), users.get(i).getFirstName(), users.get(i).getLastName());
-            }else{
-                user = null;
-            }
-        }
-        return user;
-    }  
+    // @GetMapping("/doesUserHaveAnAccount")
+    // public User compareUsers(@RequestParam String userName){
+    //     List<User> users = userRepository.findAll();
+    //     User user = new User();
+    //     for(int i = 0; i < users.size(); i++){
+    //         if(users.get(i).getUserName().compareTo(userName) == 0){
+    //             Optional<User> u = userRepository.findByUserName(users.get(i).getUserName());
+    //             String id = u.map(usr-> usr.getId()).orElse(null);
+    //             return new User(id, users.get(i).getUserName(), users.get(i).getFirstName(), users.get(i).getLastName());
+    //         }else{
+    //             user = null;
+    //         }
+    //     }
+    //     return user;
+    // }  
 
 }
