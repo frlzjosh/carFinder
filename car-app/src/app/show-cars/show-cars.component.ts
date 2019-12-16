@@ -47,7 +47,7 @@ export class ShowCarsComponent implements OnInit {
   }
 
   deleteCar(user){
-    this.carService.deleteUserCar(user.id, this.userID);
+    this.carService.deleteUserCar(user.id, this.userID).then(resp=>resp.subscribe())
   }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -33,11 +34,11 @@ public class CarController {
     }
     
     @DeleteMapping("/deleteCar")
-    public List<Car> deleteCar(@RequestBody Map<String, String> body){
+    public List<Car> deleteCar(@RequestParam Map<String, String> param){
         return new ArrayList<>(
             carRepository.deleteByIdAndUserID(
-                Integer.parseInt(body.get("carID")),
-                body.get("userID")
+                Integer.parseInt(param.get("carID")),
+                param.get("userID")
             )
         ); 
     }
