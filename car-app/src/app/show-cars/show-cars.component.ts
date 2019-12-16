@@ -22,9 +22,11 @@ export class ShowCarsComponent implements OnInit {
     this.userService.userData$.subscribe((usr)=>{
       this.userID = usr.id;
       this.userName = usr.userName;
+      console.log(usr);
       this.carService.getUsersCars(usr.id).then(
         (resp)=>{
           resp.subscribe((cars)=>{
+            console.log(cars);
             this.usersCars = cars;
           })
         }
@@ -33,7 +35,20 @@ export class ShowCarsComponent implements OnInit {
   }
 
   getUsersCars(){
-    this.carService.getUsersCars(this.userID);
+    this.carService.getUsersCars(this.userID).then(
+      promiseResponse=>{
+        promiseResponse.subscribe(
+          usrCars=>{
+            this.usersCars = usrCars;
+          }
+        )
+      }
+    )
+  }
+
+  deleteCar(user){
+    console.log(user);
+    // this.carService.deleteUserCar(this.user.carID, this.userID);
   }
 
 }

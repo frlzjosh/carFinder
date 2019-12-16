@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.oop.Models.Car;
+import com.example.oop.Models.UserCar;
 import com.example.oop.Repositories.CarRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +23,7 @@ public class CarController {
     CarRepository carRepository;
 
     @PostMapping("/createCar")
-    public Car createCar( @RequestBody final Map<String, String> body){
+    public Car createCar( @RequestBody Map<String, String> body){
         return carRepository.save(
             new Car(
                 body.get("userID"),
@@ -32,14 +34,14 @@ public class CarController {
             )
         );
     }
-
-    @GetMapping("/getCars")
-    public List<Car> getCars(@RequestParam String userID){
-        final List<Car> carList = new ArrayList<>(carRepository.findAllByUserID(userID));
-        return carList;
-    }
-    @GetMapping("/test")
-    public String testAPI(){
-        return "hello world";
+    
+    @DeleteMapping("/deleteCar")
+    public List<Car> deleteCar(@RequestBody Map<String, String> body){
+        return new ArrayList<>(
+            carRepository.deleteByCarIDAndUserID(
+                Integer.parseInt(body.get("carID")),
+                body.get("userID")
+            )
+        ); 
     }
 }   
