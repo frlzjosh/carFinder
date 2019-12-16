@@ -11,11 +11,11 @@ import com.example.oop.Models.UserCar;
 
 
 @Repository
-public interface CarRepository extends JpaRepository<Car, String> {
+public interface CarRepository extends JpaRepository<UserCar, String> {
 
     // custom query to search to blog post by title or content
     List<UserCar> findAllByUserID(String userID);
 
-    List<Car> deleteByCarIDAndUserID(int carID, String userID);
+    // List<Car> deleteByCarIDAndUserID(int carID, String userID);
     
 }
