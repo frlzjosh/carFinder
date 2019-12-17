@@ -7,6 +7,7 @@ import { CarService } from 'src/services/car.service';
   styleUrls: ['./missing-cars.component.scss']
 })
 export class MissingCarsComponent implements OnInit {
+  userCars: Object;
   
   constructor(public carService: CarService) { }
 
@@ -19,6 +20,7 @@ export class MissingCarsComponent implements OnInit {
       resp=>{
         resp.subscribe(data=>{
           console.log(data)
+          this.userCars = data;
         })
       }
     )

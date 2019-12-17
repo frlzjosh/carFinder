@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-12">
-            <p class="show-car__field show-car__inline">Make: {{user.make}} | Model: {{user.model}} | Year: {{user.year}}</p>
+            <p *ngFor="user of userCars;" class="show-car__field show-car__inline">Make: {{user.make}} | Model: {{user.model}} | Year: {{user.year}}</p>
         </div>
     </div>
 </div>
