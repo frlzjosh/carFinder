@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarService } from 'src/services/car.service';
 
 @Component({
   selector: 'app-missing-cars',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MissingCarsComponent implements OnInit {
   
-  constructor() { }
+  constructor(public carService: CarService) { }
 
   ngOnInit() {
+    this.getCars();
+  }
+
+  getCars(){
+    this.carService.getAllCars().then(
+      resp=>{
+        resp.subscribe(data=>{
+          console.log(data)
+        })
+      }
+    )
   }
 
 }
