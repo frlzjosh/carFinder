@@ -24,20 +24,19 @@ public class UserCar {
         this.model = model;
         this.year = year;
         this.isSalvaged = isSalvaged;
-        this.userName = userName;
+        this.getUserName();
     }
 
 
-
-    // public UserCar(String userID, String userName, int carID, String make, String model, int year, String isSalvaged) {
-    //     this.userID = userID;
-    //     this.userName = userName;
-    //     this.carID = carID;
-    //     this.make = make;
-    //     this.model = model;
-    //     this.year = year;
-    //     this.isSalvaged = isSalvaged;
-    // }
+    public UserCar(String userID, String userName, int carID, String make, String model, String year, String isSalvaged) {
+        this.userID = userID;
+        this.userName = userName;
+        this.carID = carID;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.isSalvaged = isSalvaged;
+    }
 
     public String getMake() {
         return make;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.oop.Models.Car;
+import com.example.oop.Models.User;
 import com.example.oop.Models.UserCar;
 import com.example.oop.Repositories.CarRepository;
 
@@ -53,7 +54,25 @@ public class UserCarController{
         carRepository.findAll().forEach( cars->{
             userCarList.add(
                 new UserCar(
-                    cars.getUserID(), 
+                    cars.getUserID(),
+                    cars.getId(), 
+                    cars.getMake(), 
+                    cars.getModel(), 
+                    cars.getYear(), 
+                    cars.getIsSalvaged()
+                )
+            );
+        });
+        return userCarList;
+    }
+    @GetMapping("/getAllCarsV3")
+    public List<UserCar> getAllCarsV3(){
+        List<UserCar> userCarList = new ArrayList<>();
+        carRepository.findAll().forEach( cars->{
+            userCarList.add(
+                new UserCar(
+                    cars.getUserID(),
+                    new User(cars.getUserID()).getUserName(),
                     cars.getId(), 
                     cars.getMake(), 
                     cars.getModel(), 
@@ -65,12 +84,21 @@ public class UserCarController{
         return userCarList;
     }
 
-    @GetMapping("/getAllCarsV3")
-    public List<String> getAllCarsV3(){
-        List<String> carID = new ArrayList<>();
+    @GetMapping("/getAllCarsV4")
+    public List<UserCar> getAllCarsV4(){
+        List<UserCar> userCarList = new ArrayList<>();
         carRepository.findAll().forEach( cars->{
-            carID.add(cars.getUserID());
+            userCarList.add(
+                new UserCar(
+                    cars.getUserID(),
+                    cars.getId(), 
+                    cars.getMake(), 
+                    cars.getModel(), 
+                    cars.getYear(), 
+                    cars.getIsSalvaged()
+                )
+            );
         });
-        return carID;
+        return userCarList;
     }
 }

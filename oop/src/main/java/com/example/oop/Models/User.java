@@ -31,6 +31,9 @@ public class User implements Serializable{
         super();
     }
 
+    public User(String id){
+        this.id = id;
+    }
 
     public String getUserName() {
         return userName;
