@@ -23,7 +23,7 @@ public class UserController{
 
     User userMock = new User("ab123", "felixTheMan", "felix", "rab");
 
-    @Test
+    // @Test 
     public void postUserInfo() throws Exception{
         
         RequestBuilder request = MockMvcRequestBuilders
