@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-12">
-            <span *ngFor="user of userCars;">
-            <p class="show-car__field show-car__inline">Make: {{user.make}} | Model: {{user.model}} | Year: {{user.year}}</p>
-            </span>
+            <div *ngFor="user of userCars;">
+                <p class="show-car__field show-car__inline">Make: {{user.make}} | Model: {{user.model}} | Year: {{user.year}}</p>
+            </div>
         </div>
     </div>
 </div>
