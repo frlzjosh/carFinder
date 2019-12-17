@@ -51,8 +51,26 @@ public class UserCarController{
     public List<UserCar> getAllCarsV2(){
         List<UserCar> userCarList = new ArrayList<>();
         carRepository.findAll().forEach( cars->{
-            userCarList.add(new UserCar(cars.getUserID()));
+            userCarList.add(
+                new UserCar(
+                    cars.getUserID(), 
+                    cars.getId(), 
+                    cars.getMake(), 
+                    cars.getModel(), 
+                    cars.getYear(), 
+                    cars.getIsSalvaged()
+                )
+            );
         });
         return userCarList;
+    }
+
+    @GetMapping("/getAllCarsV3")
+    public List<String> getAllCarsV3(){
+        List<String> carID = new ArrayList<>();
+        carRepository.findAll().forEach( cars->{
+            carID.add(cars.getUserID());
+        });
+        return carID;
     }
 }

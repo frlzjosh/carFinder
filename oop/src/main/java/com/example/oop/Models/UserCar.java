@@ -24,6 +24,7 @@ public class UserCar {
         this.model = model;
         this.year = year;
         this.isSalvaged = isSalvaged;
+        this.userName = userName;
     }
 
 
