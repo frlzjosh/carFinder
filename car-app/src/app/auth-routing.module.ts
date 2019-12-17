@@ -9,8 +9,8 @@ import { AuthInterceptor } from './shared/okta/auth.interceptor';
 
 const oktaConfig = {
   issuer: 'https://dev-459112.okta.com/oauth2/default',
-  // redirectUri:'https://car-app.netlify.com/implicit/callback',
-  redirectUri:'http://localhost:4200/implicit/callback',
+  redirectUri:'https://car-app.netlify.com/implicit/callback',
+  // redirectUri:'http://localhost:4200/implicit/callback',
   clientId: '0oa25pgd7kGzHFvZF357',
   pkce: true,
   scope: ['openid', 'profile', 'email']
