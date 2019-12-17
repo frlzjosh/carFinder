@@ -25,7 +25,7 @@ export class UserService {
   setUser(user){
     this.user.id = user.sub
     this.user.firstName = user.given_name
-    this.user.lastName = user.family_ame
+    this.user.lastName = user.family_name
     this.user.userName = user.name
     this.userData.next(this.user);
     this.createUser(user)

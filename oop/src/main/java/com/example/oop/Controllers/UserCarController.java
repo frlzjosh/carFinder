@@ -7,6 +7,7 @@ import com.example.oop.Models.Car;
 import com.example.oop.Models.User;
 import com.example.oop.Models.UserCar;
 import com.example.oop.Repositories.CarRepository;
+import com.example.oop.Repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserCarController{
     @Autowired
     CarRepository carRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
 
     @GetMapping("/getCarsV1")
     public List<Car> getCarsV1(@RequestParam String userID){
@@ -69,17 +74,19 @@ public class UserCarController{
     public List<UserCar> getAllCarsV3(){
         List<UserCar> userCarList = new ArrayList<>();
         carRepository.findAll().forEach( cars->{
-            userCarList.add(
-                new UserCar(
-                    cars.getUserID(),
-                    new User(cars.getUserID()).getUserName(),
-                    cars.getId(), 
-                    cars.getMake(), 
-                    cars.getModel(), 
-                    cars.getYear(), 
-                    cars.getIsSalvaged()
-                )
-            );
+            userRepository.findAllById(cars.getUserID()).forEach(user->{
+                userCarList.add(
+                    new UserCar(
+                        cars.getUserID(),
+                        user.getUserName(),
+                        cars.getId(),
+                        cars.getMake(),
+                        cars.getModel(), 
+                        cars.getYear(), 
+                        cars.getIsSalvaged()
+                    )
+                );
+            });
         });
         return userCarList;
     }
