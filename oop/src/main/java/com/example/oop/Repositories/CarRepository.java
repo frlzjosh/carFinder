@@ -14,6 +14,7 @@ public interface CarRepository extends JpaRepository<Car, String> {
 
     // custom query to search to blog post by title or content
     List<Car> findAllByUserID(String userID);
+    
     List<Car> removeByIdAndUserID(int id, String userID);
 
     

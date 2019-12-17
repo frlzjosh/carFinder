@@ -33,6 +33,7 @@ public class CarController {
                 body.get("isSalvaged")
             )
         );
+
     }
     
     @DeleteMapping("/deleteCar")

@@ -14,7 +14,9 @@ import javax.persistence.Table;
 public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
+    private User user;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_id")
@@ -48,16 +50,7 @@ public class Car implements Serializable {
         this.year = year;
         this.isSalvaged = isSalvaged;
     }
-    public Car(String userID, String userName, int carID, String make, String model, String year, String isSalvaged) {
-        this.userID = userID;
-        this.userName = userName;
-        this.id = carID;
-        this.make = make;
-        this.model = model;
-        this.year = year;
-        this.isSalvaged = isSalvaged;
-    }
-
+    
     public String getUserID() {
         return userID;
     }
