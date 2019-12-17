@@ -17,8 +17,8 @@ public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "userID", nullable = false)
+    // @ManyToOne(optional = false)
+    // @JoinColumn(name = "userID", nullable = false)
     private User user;
 
     @Id

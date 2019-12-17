@@ -19,7 +19,8 @@ public class UserCarController{
 
     @GetMapping("/getCarsV1")
     public List<Car> getCarsV1(@RequestParam String userID){
-        return carRepository.findAllByUserID(userID);
+        List<Car> carList = new ArrayList<>(carRepository.findAllByUserID(userID));
+        return carList;
     }
 
     @GetMapping("/getCarsV2")
@@ -42,10 +43,10 @@ public class UserCarController{
     }
 
     @GetMapping("/getAllCarsV1")
-    public List<Car> getAllCars(){
-        return carRepository.findAll();
+    public List<Car> getAllCarsV1(){
+        List<Car> carList = new ArrayList<>(carRepository.findAll());
+        return carList;
     }
-    
     @GetMapping("/getAllCarsV2")
     public List<UserCar> getAllCarsV2(){
         List<UserCar> userCarList = new ArrayList<>();

@@ -77,7 +77,7 @@ export class CarService {
       Authorization: 'Bearer ' + token
     })
 
-    return this.http.get('https://car-app-258808.appspot.com/getAllCars', {headers:headers})
+    return this.http.get('https://car-app-258808.appspot.com/getAllCarsV1', {headers:headers})
   }
 
 }
