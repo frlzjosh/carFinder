@@ -1,5 +1,7 @@
 package com.example.oop.Repositories;
 
+import java.util.List;
+
 // import java.util.Optional;
 
 import com.example.oop.Models.User;
@@ -10,6 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
     
-    // public Optional<User> findByUserName(String userName);
+    public List<User> findByUserID(String userID);
 
 }

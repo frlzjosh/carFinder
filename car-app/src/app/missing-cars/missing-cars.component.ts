@@ -14,7 +14,13 @@ export class MissingCarsComponent implements OnInit {
   ngOnInit() {
     this.getCars();
   }
-
+  deleteCar(user){
+    this.carService.deleteUserCar(user.id, user.userID).then(
+      resp=>{
+        resp.subscribe();
+      }
+    )
+  }
   getCars(){
     this.carService.getAllCars().then(
       resp=>{

@@ -1,0 +1,13 @@
+.show-cars{
+    background-color: #FAFAFA;
+    &__data{
+        background-color: aliceblue;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    &__field{
+        padding-bottom: 5px;
+        padding: 10px;
+        border-bottom: 2px solid black;
+    }
+}

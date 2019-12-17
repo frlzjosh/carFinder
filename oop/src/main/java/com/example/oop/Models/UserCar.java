@@ -13,6 +13,9 @@ public class UserCar {
     public UserCar(){
         super();
     }
+    public UserCar(String userID){
+        this.userID = userID;
+    }
     
     public UserCar(String userID, int carID, String make, String model, String year, String isSalvaged) {
         this.userID = userID;
