@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,11 +14,7 @@ import javax.persistence.Table;
 public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    // @ManyToOne(optional = false)
-    // @JoinColumn(name = "userID", nullable = false)
-    private User user;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_id")

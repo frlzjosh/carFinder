@@ -25,7 +25,6 @@ export class MissingCarsComponent implements OnInit {
     this.carService.getAllCars().then(
       resp=>{
         resp.subscribe(data=>{
-          console.log(data)
           this.userCars = data;
         })
       }

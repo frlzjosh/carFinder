@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.oop.Models.Car;
-import com.example.oop.Models.User;
 import com.example.oop.Models.UserCar;
 import com.example.oop.Repositories.CarRepository;
 import com.example.oop.Repositories.UserRepository;

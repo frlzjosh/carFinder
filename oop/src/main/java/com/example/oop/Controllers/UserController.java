@@ -8,6 +8,8 @@ import com.example.oop.Models.User;
 import com.example.oop.Repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,25 +21,9 @@ public class UserController {
     UserRepository userRepository;
 
     @PostMapping("/createUser")
-    public User postUserInfo(@Valid @RequestBody Map<String, String> body) {
+    public ResponseEntity<User> postUserInfo(@Valid @RequestBody Map<String, String> body) {
         User user = new User(body.get("userID"), body.get("userName"), body.get("firstName"), body.get("lastName"));
-        return userRepository.save(user);
+        return new ResponseEntity<User>(userRepository.save(user), HttpStatus.CREATED);
     }
-
-    // @GetMapping("/doesUserHaveAnAccount")
-    // public User compareUsers(@RequestParam String userName){
-    //     List<User> users = userRepository.findAll();
-    //     User user = new User();
-    //     for(int i = 0; i < users.size(); i++){
-    //         if(users.get(i).getUserName().compareTo(userName) == 0){
-    //             Optional<User> u = userRepository.findByUserName(users.get(i).getUserName());
-    //             String id = u.map(usr-> usr.getId()).orElse(null);
-    //             return new User(id, users.get(i).getUserName(), users.get(i).getFirstName(), users.get(i).getLastName());
-    //         }else{
-    //             user = null;
-    //         }
-    //     }
-    //     return user;
-    // }  
 
 }

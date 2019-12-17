@@ -30,7 +30,9 @@ export class ReportCarComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.beginUserProcess();
+    if(this.userService.user.lastName == null){
+      this.beginUserProcess();
+    }
     this.checkForCreatePosts();
     this.generateCarPosts();
     this.oktaAuth.$authenticationState.subscribe(
