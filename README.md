@@ -1,5 +1,11 @@
 # carFinder
-Creating a Single Page Web Application that uses Java Spring Boot as the back end. Intended to practice my skills in Object Oriented Design, Creating REST api's, Dependency Injection in Angular and with JPA Repositories in Controllers, Tokens/Cookies with Okta, and hosting Spring-Boot on GCP.
+- Single Page Web Application
+- Spring Boot to create RESTful API's and update MySQL DB
+- Dependency Injection in Angular services and with JPA Repositories in SControllers
+- ORM using JPA/Hibernate
+- Tokens/Cookies/Authorization with Okta
+- Hosting Spring-Boot on Google Cloud Platform
+- Continuous Integration with Netlify
 
 # Click the link below to check the web-app out.
 https://car-app.netlify.com/report-car
