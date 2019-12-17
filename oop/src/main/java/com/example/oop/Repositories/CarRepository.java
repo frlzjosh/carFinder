@@ -19,6 +19,5 @@ public interface CarRepository extends JpaRepository<Car, String> {
 
     List<Car> removeByIdAndUserID(int id, String userID);
 
-    List<Car> findAllCars();
     
 }
