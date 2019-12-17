@@ -15,8 +15,6 @@ public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private User user;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_id")
@@ -37,7 +35,6 @@ public class Car implements Serializable {
     @Column(name="is_salvaged")
     String isSalvaged;
 
-    private String userName;
 
     public Car(){
         super();
@@ -50,7 +47,7 @@ public class Car implements Serializable {
         this.year = year;
         this.isSalvaged = isSalvaged;
     }
-    
+
     public String getUserID() {
         return userID;
     }
