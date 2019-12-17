@@ -41,4 +41,9 @@ public class UserCarController{
         }
         return userCarList;
     }
+
+    @GetMapping("/getAllCars")
+    public List<Car> getAllCars(){
+        return carRepository.findAllCars();
+    }
 }
