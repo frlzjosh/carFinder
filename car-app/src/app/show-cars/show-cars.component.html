@@ -1,5 +1,8 @@
 <div class="show-car">
     <h3 class="show-car__header">Cars Report By: {{userName}}</h3>
+    <div *ngIf="!hasCarsBeenLoaded" class="show-car__data">
+        <h1>Cars Are Being Loaded. Please Wait.</h1>
+    </div>
     <div class="show-car__data" *ngFor="let user of usersCars">
         <p (click)="deleteCar(user)" class="show-car__button show-car__inline"><strong>x</strong></p>
         <p class="show-car__field show-car__inline">Make: {{user.make}} | Model: {{user.model}} | Year: {{user.year}}</p>

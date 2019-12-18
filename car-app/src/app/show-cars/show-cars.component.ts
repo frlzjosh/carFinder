@@ -8,7 +8,7 @@ import { UserService } from 'src/services/user.service';
   styleUrls: ['./show-cars.component.scss'],
 })
 export class ShowCarsComponent implements OnInit {
-
+  public hasCarsBeenLoaded: boolean
   public usersCars = [];
   public userID: string
   userName: string;
@@ -24,6 +24,7 @@ export class ShowCarsComponent implements OnInit {
       this.userName = usr.userName;
       this.carService.getUsersCars(usr.id).then(
         (resp)=>{
+          this.hasCarsBeenLoaded = true;
           resp.subscribe((cars)=>{
             this.usersCars = cars;
           })

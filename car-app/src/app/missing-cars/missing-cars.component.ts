@@ -7,7 +7,8 @@ import { CarService } from 'src/services/car.service';
   styleUrls: ['./missing-cars.component.scss']
 })
 export class MissingCarsComponent implements OnInit {
-  userCars: Object;
+  public userCars: Object;
+  public hasResponseBeenMade: boolean
   
   constructor(public carService: CarService) { }
 
@@ -23,8 +24,9 @@ export class MissingCarsComponent implements OnInit {
   }
   getCars(){
     this.carService.getAllCars().then(
-      resp=>{
-        resp.subscribe(data=>{
+      (resp)=>{
+        this.hasResponseBeenMade = true;
+        resp.subscribe((data)=>{
           this.userCars = data;
         })
       }

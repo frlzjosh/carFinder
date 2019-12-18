@@ -1,8 +1,8 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject, of } from 'rxjs';
-import { carMakes } from './../assets/data/car'
 import { OktaAuthService } from '@okta/okta-angular';
+import { BehaviorSubject } from 'rxjs';
+import { carMakes } from './../assets/data/car';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +51,7 @@ export class CarService {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token
     });
-    let params = new HttpParams().set("userID", userID)
+    const params = new HttpParams().set("userID", userID)
 
     return this.http.get<any>('https://car-app-258808.appspot.com/getCarsByUserID',{
       params: params,

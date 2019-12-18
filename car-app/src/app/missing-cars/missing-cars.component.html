@@ -6,6 +6,9 @@
     </div>
     <div class="row mt-3 show-cars">
         <div class="col-12 mr-5">
+            <div *ngIf="!hasResponseBeenMade" class="show-cars__data">
+                <h1>Cars Are Being Loaded. Please Wait.</h1>
+            </div>
             <div class="show-cars__data" *ngFor="let user of userCars">
                 <p class="show-cars__field show-cars__inline"><strong>Reported By: </strong> {{user.userName}} | <strong>Make:</strong> {{user.make}} | <strong>Model:</strong> {{user.model}} | <strong>Year:</strong> {{user.year}} | <strong>Salvaged:</strong> {{user.isSalvaged}}</p>
             </div>
