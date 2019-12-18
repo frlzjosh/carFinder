@@ -25,8 +25,10 @@ export class MissingCarsComponent implements OnInit {
   getCars(){
     this.carService.getAllCars().then(
       (resp)=>{
-        this.hasResponseBeenMade = true;
         resp.subscribe((data)=>{
+          if(data){
+            this.hasResponseBeenMade = true;
+          }
           this.userCars = data;
         })
       }

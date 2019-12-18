@@ -24,8 +24,10 @@ export class ShowCarsComponent implements OnInit {
       this.userName = usr.userName;
       this.carService.getUsersCars(usr.id).then(
         (resp)=>{
-          this.hasCarsBeenLoaded = true;
           resp.subscribe((cars)=>{
+            if(cars){
+              this.hasCarsBeenLoaded = true;
+            }
             this.usersCars = cars;
           })
         }
@@ -46,7 +48,12 @@ export class ShowCarsComponent implements OnInit {
   }
 
   deleteCar(user){
-    this.carService.deleteUserCar(user.id, this.userID).then(resp=>resp.subscribe())
+    this.carService.deleteUserCar(user.id, this.userID)
+    .then(
+      (resp)=>{
+        resp.subscribe()
+      }
+    )
   }
 
 }
