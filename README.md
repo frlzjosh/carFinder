@@ -1,7 +1,7 @@
 # carFinder
 - Single Page Web Application
 - Spring Boot to create RESTful API's and update MySQL DB
-- Dependency Injection in Angular services and with JPA Repositories in SControllers
+- Dependency Injection in Angular services and with JPA Repositories in Controllers
 - ORM using JPA/Hibernate
 - Tokens/Cookies/Authorization with Okta
 - Hosting Spring-Boot on Google Cloud Platform
